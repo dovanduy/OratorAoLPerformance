@@ -1,0 +1,5 @@
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\CoreOnly\protobuf-net.xml
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\CoreOnly\protobuf-net.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\CoreOnly\protobuf-net.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\CoreOnly\protobuf-net.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\CoreOnly\protobuf-net.pdb

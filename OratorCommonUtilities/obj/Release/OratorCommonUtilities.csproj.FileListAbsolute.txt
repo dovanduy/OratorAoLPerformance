@@ -1,0 +1,14 @@
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\bin\Release\OratorCommonUtilities.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\bin\Release\OratorCommonUtilities.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\bin\Release\protobuf-net.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\bin\Release\protobuf-net.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\bin\Release\protobuf-net.xml
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\OratorCommonUtilities.csprojResolveAssemblyReference.cache
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\CircularProgressBar.baml
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\ModalDialog.baml
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\CircularProgressBar.g.cs
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\ModalDialog.g.cs
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\OratorCommonUtilities_MarkupCompile.cache
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\OratorCommonUtilities.g.resources
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\OratorCommonUtilities.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Release\OratorCommonUtilities.pdb

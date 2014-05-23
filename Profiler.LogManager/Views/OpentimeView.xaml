@@ -1,0 +1,179 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts" 
+            xmlns:primitives="clr-namespace:Visiblox.Charts.Primitives;assembly=Visiblox.Charts"
+    
+            xmlns:Visiblox_Charts_Primitives="clr-namespace:Visiblox.Charts.Primitives;assembly=Visiblox.Charts"
+            xmlns:local="clr-namespace:Profiler.LogManager"
+            x:Class="Profiler.LogManager.Views.OpentimeView" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="OratorRulerRectangleStyle" TargetType="{x:Type Charts:RulerRectangle}">
+            <Setter Property="BorderStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Background" Value="#446DE884"/>
+                        <Setter Property="BorderBrush" Value="#FF6DE884"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="LabelBorderStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RangeLabelStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Padding" Value="4"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="SizeLabelStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Padding" Value="5"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Line}">
+                        <Setter Property="StrokeThickness" Value="2"/>
+                        <Setter Property="Stroke" Value="#FF323232"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Charts:RulerRectangle}">
+                        <Border x:Name="LayoutRoot" Style="{TemplateBinding BorderStyle}" Panel.ZIndex="1">
+                            <Grid HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Grid.IsSharedSizeScope="True" >
+                                <Canvas x:Name="RangeLabels" Panel.ZIndex="4">
+                                    <Border x:Name="TopHolder" Style="{TemplateBinding LabelBorderStyle}" Visibility="Collapsed">
+                                        <TextBlock x:Name="TopText" Style="{TemplateBinding RangeLabelStyle}"/>
+                                    </Border>
+                                    <Border x:Name="BottomHolder" Style="{TemplateBinding LabelBorderStyle}" Visibility="Collapsed">
+                                        <TextBlock x:Name="BottomText" Style="{TemplateBinding RangeLabelStyle}"/>
+                                    </Border>
+                                    <!--<Border x:Name="LeftHolder" Style="{TemplateBinding LabelBorderStyle}" Visibility="Collapsed">-->
+                                    <Border x:Name="LeftHolder" Background="Black" BorderThickness="0" BorderBrush="White" Visibility="Collapsed">
+                                        <TextBlock x:Name="LeftText" Foreground="White" Style="{TemplateBinding RangeLabelStyle}"/>
+                                    </Border>
+
+                                    <Border x:Name="RightHolder" BorderBrush="Transparent" Background="Transparent" Visibility="Collapsed">
+
+                                        <StackPanel>
+
+                                            <!--<Border Background="White" BorderThickness="1" BorderBrush="Black">-->
+                                            <Border Background="Black" BorderThickness="0" BorderBrush="White">
+                                                <TextBlock x:Name="RightText" Foreground="White" Style="{TemplateBinding RangeLabelStyle}" Width="Auto"/>
+                                            </Border>
+
+                                            <ItemsControl ItemsSource="{Binding SelectionData}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Opacity="0.9" Margin="0,1,0,0" Background="Black" BorderThickness="0" BorderBrush="Black" Visibility="Visible" Width="Auto">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition SharedSizeGroup="Col1"/>
+                                                                    <ColumnDefinition SharedSizeGroup="Col2"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBlock Grid.Column="0" Foreground="White" Text="{Binding Name}" Padding="4"></TextBlock>
+                                                                <TextBlock Grid.Column="1" Foreground="White" Padding="4">
+                                                                    <TextBlock.Text>
+                                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                                            <Binding Path="Value"></Binding>
+                                                                            <Binding Path="Unit"></Binding>
+                                                                        </MultiBinding>
+                                                                    </TextBlock.Text>
+                                                                </TextBlock>
+                                                                <!--<StackPanel Grid.Column="1" Orientation="Horizontal">                                                                    
+                                                                    <TextBlock Foreground="White" Text="{Binding Value}" Padding="4"></TextBlock>
+                                                                    <TextBlock Foreground="White" Text="{Binding Unit}" Padding="0,2,0,4"></TextBlock>
+                                                                </StackPanel>-->
+                                                            </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </Border>
+
+                                </Canvas>
+                                <Grid Background="Transparent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="10"/>
+                                    </Grid.RowDefinitions>
+                                    <Canvas x:Name="LeftDragHandle" Background="Transparent" Margin="-5,0,0,0" Grid.Row="1" VerticalAlignment="Stretch" Width="10"/>
+                                    <Canvas x:Name="TopDragHandle" Background="Transparent" Grid.Column="1" HorizontalAlignment="Stretch" Height="10" Margin="0,-5,0,0"/>
+                                    <Canvas x:Name="RightDragHandle" Background="Transparent" Grid.Column="2" Margin="0,0,-5,0" Grid.Row="1" VerticalAlignment="Stretch" Width="10"/>
+                                    <Canvas x:Name="BottomDragHandle" Background="Transparent" Grid.Column="1" HorizontalAlignment="Stretch" Height="10" Margin="0,0,0,-5" Grid.Row="2"/>
+                                </Grid>
+                                <Canvas x:Name="LineCanvas" Margin="0" primitives:Clip.ToBounds="True">
+                                    <Line x:Name="WidthLine" Style="{TemplateBinding LineStyle}"/>
+                                    <Line x:Name="HeightLine" Style="{TemplateBinding LineStyle}"/>
+                                    <Border x:Name="WidthHolder" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="2">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock x:Name="WidthText" HorizontalAlignment="Center" Style="{TemplateBinding SizeLabelStyle}" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border x:Name="HeightHolder" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="2">
+                                        <Border.RenderTransform>
+                                            <RotateTransform Angle="270"/>
+                                        </Border.RenderTransform>
+                                        <TextBlock x:Name="HeightText" Style="{TemplateBinding SizeLabelStyle}"/>
+                                    </Border>
+                                </Canvas>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Charts:ZoomRectangle}" x:Key="OratorZoomRectangleStyle">
+            <Setter Property="Background" Value="DarkMagenta"></Setter>
+            <Setter Property="BorderBrush" Value="DarkMagenta"></Setter>
+            <Setter Property="BorderThickness" Value="10"></Setter>
+            <Setter Property="Opacity" Value="0.2"></Setter>
+        </Style>
+    </UserControl.Resources>
+	<Grid>
+
+
+        <Charts:Chart Title="Opentime"  Style="{DynamicResource MyChartStyle}" Grid.Row="0" Grid.Column="0" LegendVisibility="Visible" LegendPosition="InsideTopRight" Series="{Binding SeriesList}" Annotations="{Binding Annotations}" AllowDrop="True" BorderThickness="0" Margin="3" Name="MainChart">
+            <Charts:Chart.Behaviour>
+                <Charts:BehaviourManager x:Name="BehaviourManager" AllowMultipleEnabled="True">
+                    <local:GraphbuilderRulerBehaviour x:Name="Rulerbehaviour" AllowResize="False" XAxisRangeLabelFormatString="T" XAxisSizeLabelFormatString="t" RulerRectangleStyle="{StaticResource OratorRulerRectangleStyle}" ShowXRangeLabels="True" ShowXSizeLabel="True" ScaleWithZoom="True" MeasureOnXAxisEnabled="True" MeasureOnYAxisEnabled="False"/>
+                    <Charts:ZoomBehaviour x:Name="Zoombehaviour"  BehaviourActivator="Shift" AnimationEnabled="False" DisableAxisRendering="False" ZoomRectangleStyle="{StaticResource OratorZoomRectangleStyle}" YZoomEnabled="False"/>
+                </Charts:BehaviourManager>
+            </Charts:Chart.Behaviour>
+
+            <Charts:Chart.XAxis>
+                <Charts:DateTimeAxis x:Name="xAxis" LabelAngle="30" LabelFormatString="d/M, HH:mm:ss" LabelPosition="Outside" Title="Time" ShowMajorTicks="True" ShowMinorTicks="False" ShowMajorGridlines="False">
+                    <Charts:DateTimeAxis.Range>
+                        <Charts:DateTimeRange/>
+                    </Charts:DateTimeAxis.Range>
+                </Charts:DateTimeAxis>
+            </Charts:Chart.XAxis>
+        </Charts:Chart>    
+	</Grid>
+</UserControl>

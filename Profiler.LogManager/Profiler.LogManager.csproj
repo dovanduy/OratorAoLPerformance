@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2E8AF5A7-80A0-4C2F-81E7-93460FC19664}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Profiler.LogManager</RootNamespace>
+    <AssemblyName>Profiler.LogManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Visiblox.Charts, Version=4.0.1.49882, Culture=neutral, PublicKeyToken=1543c03f04c4461b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Resources\visiblox\Visiblox.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\ADBLogger.cs" />
+    <Compile Include="Models\EventContainer.cs" />
+    <Compile Include="Models\EventLogParser.cs" />
+    <Compile Include="Models\EventValueDescription.cs" />
+    <Compile Include="Models\EventValueType.cs" />
+    <Compile Include="Models\GcEventContainer.cs" />
+    <Compile Include="Models\IListener.cs" />
+    <Compile Include="Models\ILogData.cs" />
+    <Compile Include="Models\ILogger.cs" />
+    <Compile Include="Models\IShellOutputReceiver.cs" />
+    <Compile Include="Models\ITailReceiver.cs" />
+    <Compile Include="Models\LogBuffer.cs" />
+    <Compile Include="Models\LogDataCollection.cs" />
+    <Compile Include="Models\LogData.cs" />
+    <Compile Include="Models\Logger.cs" />
+    <Compile Include="Models\LogListerner.cs" />
+    <Compile Include="Models\LogPipeline.cs" />
+    <Compile Include="Models\LogPriority.cs" />
+    <Compile Include="Models\LogReceivedHandler.cs" />
+    <Compile Include="Models\LogTimestampMode.cs" />
+    <Compile Include="Models\MultiLineReceiver.cs" />
+    <Compile Include="Models\OutputFormat.cs" />
+    <Compile Include="Models\TagReceiver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ValueType.cs" />
+    <Compile Include="Models\ValueTypeMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ViewModels\ADBLogViewModel.cs" />
+    <Compile Include="ViewModels\LogDataViewModel.cs" />
+    <Compile Include="ViewModels\OpentimeViewModel.cs" />
+    <Compile Include="Views\ADBLogDataView.xaml.cs">
+      <DependentUpon>ADBLogDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GraphbuilderRulerBehaviour.cs" />
+    <Compile Include="Views\LogDataView.xaml.cs">
+      <DependentUpon>LogDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OpentimeView.xaml.cs">
+      <DependentUpon>OpentimeView.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Managed.AndroidDebugBridge\Managed.AndroidDebugBridge.csproj">
+      <Project>{27cae1ba-6bac-4f69-a92f-057ff30082a2}</Project>
+      <Name>Managed.AndroidDebugBridge</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OratorCommonUtilities\OratorCommonUtilities.csproj">
+      <Project>{9187788b-f9b0-4cbc-8fed-34e4f81cbac8}</Project>
+      <Name>OratorCommonUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OratorPluginBase\OratorPluginBase.csproj">
+      <Project>{96f98cd8-19a7-4ce9-ab16-35e4817dd3bc}</Project>
+      <Name>OratorPluginBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Profiler.DeviceMonitor\Profiler.DeviceMonitor.csproj">
+      <Project>{4d01a25b-b649-4e1e-bba0-7809b26c489e}</Project>
+      <Name>Profiler.DeviceMonitor</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="gear.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ADBLogDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LogDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OpentimeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

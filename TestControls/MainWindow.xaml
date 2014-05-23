@@ -1,0 +1,424 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ec="http://schemas.microsoft.com/expression/2010/controls" 
+        xmlns:System="clr-namespace:System;assembly=mscorlib" 
+        xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="TestControls.MainWindow"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded" WindowState="Maximized">
+	<Window.Resources>
+		<Style x:Key="ButtonFocusVisual">
+			<Setter Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+			<GradientStop Color="#F3F3F3" Offset="0"/>
+			<GradientStop Color="#EBEBEB" Offset="0.5"/>
+			<GradientStop Color="#DDDDDD" Offset="0.5"/>
+			<GradientStop Color="#CDCDCD" Offset="1"/>
+		</LinearGradientBrush>
+		<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+		<Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+			<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+			<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+			<Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Padding" Value="1"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<ControlTemplate.Resources>
+							<Storyboard x:Key="OnMouseEnter1"/>
+						</ControlTemplate.Resources>
+						<Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding IsDefaulted}" SnapsToDevicePixels="true">
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Themes:ButtonChrome>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsKeyboardFocused" Value="true">
+								<Setter Property="RenderDefaulted" TargetName="Chrome" Value="true"/>
+							</Trigger>
+							<Trigger Property="ToggleButton.IsChecked" Value="true">
+								<Setter Property="RenderPressed" TargetName="Chrome" Value="true"/>
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="false">
+								<Setter Property="Foreground" Value="#ADADAD"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+        <ControlTemplate x:Key="ButtonControlTemplate1" TargetType="{x:Type Button}">
+            <Border BorderThickness="1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#FFD85353" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" TextWrapping="Wrap" Text="{TemplateBinding Content}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type ButtonBase}">
+        	<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+        	<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+        	<Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+        	<Setter Property="BorderThickness" Value="1"/>
+        	<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        	<Setter Property="HorizontalContentAlignment" Value="Center"/>
+        	<Setter Property="VerticalContentAlignment" Value="Center"/>
+        	<Setter Property="Padding" Value="1"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="{x:Type ButtonBase}">
+        				<ControlTemplate.Triggers>
+        					<Trigger Property="IsKeyboardFocused" Value="true"/>
+        					<Trigger Property="ToggleButton.IsChecked" Value="true"/>
+        					<Trigger Property="IsEnabled" Value="false">
+        						<Setter Property="Foreground" Value="#ADADAD"/>
+        					</Trigger>
+        				</ControlTemplate.Triggers>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
+        <Style x:Key="RepeatButtonStyle2" BasedOn="{StaticResource BaseButtonStyle}" TargetType="{x:Type RepeatButton}">
+        	<Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+        	<Style.Triggers>
+        		<Trigger Property="IsMouseOver" Value="True">
+        			<Setter Property="Background" Value="Black"/>
+        		</Trigger>
+        	</Style.Triggers>
+        </Style>
+    </Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<StackPanel Height="30" Orientation="Horizontal">
+			<Button Command="{Binding TestDataGridCommand}" Content="Test DataGrid" Margin="0,2,3,2"/>
+			<Button Command="{Binding TestListBoxCommand}" Content="Test ListBox" Margin="0,2,3,2" IsEnabled="False"/>
+			<Button Command="{Binding TestListViewCommand}" Content="Test ListView" Margin="0,2,3,2" IsEnabled="False"/>
+			<Button Command="{Binding StopCommand}" Content="Stop" Margin="0,2,3,2"/>
+			<Button Command="{Binding SetVerticalValueCommand}" x:Name="button" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,2,3,2">
+				<ed:BlockArrow x:Name="blockArrow" Fill="#FFF4F4F5" Height="18" Orientation="Down" Stroke="Black" Width="18"/>
+			</Button>
+			<Button Content="Weak Reference" Width="75" Margin="0,2,3,2" Command="{Binding WeakReferenceCommand}"/>
+		</StackPanel>
+		<TabControl Grid.Row="1">
+			<TabItem Header="DataGrid">
+				<Grid Background="#FFE5E5E5">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="27*"/>
+						<ColumnDefinition Width="142*"/>
+					</Grid.ColumnDefinitions>
+					<ScrollViewer Template="{DynamicResource ScrollViewerControlTemplate1}" Grid.ColumnSpan="2">
+						<ScrollViewer.Resources>
+							<ControlTemplate x:Key="ScrollViewerControlTemplate1" TargetType="{x:Type ScrollViewer}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition/>
+										<RowDefinition Height="Auto"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition/>
+										<ColumnDefinition Width="Auto"/>
+									</Grid.ColumnDefinitions>
+									<ScrollBar x:Name="PART_VerticalScrollBar" Margin="0" BorderThickness="1" Grid.Column="1" Grid.RowSpan="1" Template="{DynamicResource ScrollBarControlTemplate1}" IsEnabled="False">
+										<ScrollBar.Resources>
+											<ControlTemplate x:Key="ScrollBarControlTemplate1" TargetType="{x:Type ScrollBar}">
+												<Grid>
+													<Grid.RowDefinitions>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="205*"/>
+														<RowDefinition Height="18*"/>
+													</Grid.RowDefinitions>
+													<RepeatButton Command="ScrollBar.LineUpCommand" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="18" Height="18">
+														<Path Data="M0,4L8,4 4,0z">
+															<Path.Fill>
+																<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+																	<GradientStop Color="#FF4554EE" Offset="0.509"/>
+																	<GradientStop Color="#FF8B90BF" Offset="1"/>
+																	<GradientStop Color="#FF999CC3"/>
+																</LinearGradientBrush>
+															</Path.Fill></Path>
+													</RepeatButton>
+													<Track x:Name="PART_Track" Height="Auto" Grid.RowSpan="1" VerticalAlignment="Stretch" Width="17" Grid.Row="1" ViewportSize="0" IsDirectionReversed="True">
+														<Track.DecreaseRepeatButton>
+															<RepeatButton Command="ScrollBar.PageUpCommand">
+																<RepeatButton.Background>
+																	<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuHighlightColorKey}}"/>
+																</RepeatButton.Background>
+															</RepeatButton>
+														</Track.DecreaseRepeatButton>
+														<Track.Thumb>
+															<Thumb Style="{DynamicResource ThumbStyle1}" Width="Auto" Height="Auto" Margin="0" Background="Red" BorderBrush="Red">
+																<Thumb.Resources>
+																	<Style x:Key="ThumbStyle1" TargetType="{x:Type Thumb}">
+																		<Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+																		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+																		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+																		<Setter Property="Template">
+																			<Setter.Value>
+																				<ControlTemplate TargetType="{x:Type Thumb}">
+																					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+																						<Grid>
+																							<Border BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" BorderThickness="0,0,1,1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+																							<Border BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" BorderThickness="0,0,1,1" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Margin="1"/>
+																							<Border Background="{TemplateBinding Background}" Margin="2"/>
+																						</Grid>
+																					</Border>
+																				</ControlTemplate>
+																			</Setter.Value>
+																		</Setter>
+																		<Setter Property="Height" Value="30"/>
+																		<Setter Property="Width" Value="17"/>
+																		<Setter Property="BorderBrush">
+																			<Setter.Value>
+																				<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.AppWorkspaceColorKey}}"/>
+																			</Setter.Value>
+																		</Setter>
+																		<Setter Property="Margin" Value="0"/>
+																		<Setter Property="HorizontalContentAlignment" Value="Left"/>
+																		<Setter Property="VerticalContentAlignment" Value="Top"/>
+																	</Style>
+																</Thumb.Resources>
+															</Thumb>
+														</Track.Thumb>
+														<Track.IncreaseRepeatButton>
+															<RepeatButton Command="ScrollBar.PageDownCommand" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FFE85757">
+																<RepeatButton.Background>
+																	<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuHighlightColorKey}}"/>
+																</RepeatButton.Background>
+															</RepeatButton>
+														</Track.IncreaseRepeatButton>
+													</Track>
+													<RepeatButton Command="ScrollBar.LineDownCommand" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Width="18" Height="18">
+														<Path Data="M 0 0 L 4 4 L 8 0 Z">
+															<Path.Fill>
+																<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+																	<GradientStop Color="#FF4554EE" Offset="0.509"/>
+																	<GradientStop Color="#FF8B90BF" Offset="1"/>
+																	<GradientStop Color="#FF999CC3"/>
+																</LinearGradientBrush>
+															</Path.Fill></Path>
+													</RepeatButton>
+												</Grid>
+											</ControlTemplate>
+										</ScrollBar.Resources>
+										<ScrollBar.BorderBrush>
+											<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+												<GradientStop Color="Black" Offset="0"/>
+												<GradientStop Color="#FFC17D7D" Offset="1"/>
+											</LinearGradientBrush>
+										</ScrollBar.BorderBrush>
+										<ScrollBar.Background>
+											<LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+												<GradientStop Color="#FFE1E1E1" Offset="0"/>
+												<GradientStop Color="#FFEDEDED" Offset="0.2"/>
+												<GradientStop Color="#FFEDEDED" Offset="0.8"/>
+												<GradientStop Color="#FF0CBCE4" Offset="1"/>
+											</LinearGradientBrush>
+										</ScrollBar.Background>
+									</ScrollBar>
+									<ScrollContentPresenter x:Name="PART_ScrollContentPresenter"/>
+									<ScrollBar x:Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1"/>
+								</Grid>
+							</ControlTemplate>
+						</ScrollViewer.Resources>
+						<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding LogCollectionForDataGrid}" VerticalGridLinesBrush="#FFF3F1F1" HorizontalGridLinesBrush="#FFF3F1F1" SelectionMode="Single" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+							<DataGrid.Columns>
+								<DataGridTextColumn Binding="{Binding SourceBuffer}" ClipboardContentBinding="{x:Null}" Header="Source"/>
+								<DataGridTextColumn Binding="{Binding LocalTimestamp}" ClipboardContentBinding="{x:Null}" Header="LocalTimestamp"/>
+								<DataGridTextColumn Binding="{Binding RemoteTimestamp}" ClipboardContentBinding="{x:Null}" Header="RemoteTimestamp"/>
+								<DataGridTextColumn Binding="{Binding Tag}" ClipboardContentBinding="{x:Null}" Header="Tag"/>
+								<DataGridTextColumn Binding="{Binding Data}" ClipboardContentBinding="{x:Null}" Header="Data"/>
+							</DataGrid.Columns>
+						</DataGrid>
+					</ScrollViewer>
+				</Grid>
+			</TabItem>
+			<TabItem Header="ListBox">
+				<Grid Background="#FFE5E5E5">
+					<ListBox/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="ListView" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top" Width="57.32">
+				<Grid Background="#FFE5E5E5" Margin="0,0,507,258.04">
+					<Button Height="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="159,41,-259,-141" Width="100" Style="{DynamicResource ButtonStyle1}">
+						<Button.Resources>
+							<Style x:Key="ButtonFocusVisual">
+								<Setter Property="Control.Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+							<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+								<GradientStop Color="#F3F3F3" Offset="0"/>
+								<GradientStop Color="#EBEBEB" Offset="0.5"/>
+								<GradientStop Color="#DDDDDD" Offset="0.5"/>
+								<GradientStop Color="#CDCDCD" Offset="1"/>
+							</LinearGradientBrush>
+							<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+							<Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+								<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+								<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+								<Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+								<Setter Property="BorderThickness" Value="1"/>
+								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+								<Setter Property="HorizontalContentAlignment" Value="Center"/>
+								<Setter Property="VerticalContentAlignment" Value="Center"/>
+								<Setter Property="Padding" Value="1"/>
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate TargetType="{x:Type Button}">
+											<Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding IsDefaulted}" SnapsToDevicePixels="true">
+												<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+											</Themes:ButtonChrome>
+											<ControlTemplate.Triggers>
+												<Trigger Property="IsKeyboardFocused" Value="true">
+													<Setter Property="RenderDefaulted" TargetName="Chrome" Value="true"/>
+												</Trigger>
+												<Trigger Property="ToggleButton.IsChecked" Value="true">
+													<Setter Property="RenderPressed" TargetName="Chrome" Value="true"/>
+												</Trigger>
+												<Trigger Property="IsEnabled" Value="false">
+													<Setter Property="Foreground" Value="#ADADAD"/>
+												</Trigger>
+											</ControlTemplate.Triggers>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+						</Button.Resources>
+						<Path Fill="Blue" Data="M 0 0 L 20 20 L 40 0 Z"/>
+					</Button>
+					<RepeatButton HorizontalAlignment="Left" Height="100" Margin="281,40,-381,-140" VerticalAlignment="Top" Width="100" Style="{DynamicResource RepeatButtonStyle2}" FocusVisualStyle="{DynamicResource ControlStyle1}">
+						<RepeatButton.Resources>
+							<Style x:Key="ButtonFocusVisual">
+								<Setter Property="Control.Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+							<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+								<GradientStop Color="#F3F3F3" Offset="0"/>
+								<GradientStop Color="#EBEBEB" Offset="0.5"/>
+								<GradientStop Color="#DDDDDD" Offset="0.5"/>
+								<GradientStop Color="#CDCDCD" Offset="1"/>
+							</LinearGradientBrush>
+							<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+							<Style x:Key="BaseButtonStyle" TargetType="{x:Type ButtonBase}">
+								<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+								<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+								<Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+								<Setter Property="BorderThickness" Value="1"/>
+								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+								<Setter Property="HorizontalContentAlignment" Value="Center"/>
+								<Setter Property="VerticalContentAlignment" Value="Center"/>
+								<Setter Property="Padding" Value="1"/>
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate TargetType="{x:Type ButtonBase}">
+											<Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding Button.IsDefaulted}" SnapsToDevicePixels="true">
+												<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+											</Themes:ButtonChrome>
+											<ControlTemplate.Triggers>
+												<Trigger Property="IsKeyboardFocused" Value="true">
+													<Setter Property="RenderDefaulted" TargetName="Chrome" Value="true"/>
+												</Trigger>
+												<Trigger Property="ToggleButton.IsChecked" Value="true">
+													<Setter Property="RenderPressed" TargetName="Chrome" Value="true"/>
+												</Trigger>
+												<Trigger Property="IsEnabled" Value="false">
+													<Setter Property="Foreground" Value="#ADADAD"/>
+												</Trigger>
+											</ControlTemplate.Triggers>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+							<Style x:Key="RepeatButtonStyle1" BasedOn="{StaticResource BaseButtonStyle}" TargetType="{x:Type RepeatButton}">
+								<Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+								<Style.Triggers>
+									<Trigger Property="IsMouseOver" Value="True">
+										<Setter Property="Background" Value="Black"/>
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+							<Style x:Key="ControlStyle1" TargetType="{x:Type Control}">
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate TargetType="{x:Type Control}">
+											<Grid/>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+						</RepeatButton.Resources>
+						<RepeatButton Content="RepeatButton" Height="100" Width="100"/>
+					</RepeatButton>
+					<Button Content="Red Button" HorizontalAlignment="Left" Height="100" Margin="38,45,-138,-145" VerticalAlignment="Top" Width="100" Style="{DynamicResource ButtonStyle2}" Template="{DynamicResource ButtonControlTemplate1}">
+						<Button.Resources>
+							<Style x:Key="ButtonFocusVisual">
+								<Setter Property="Control.Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+                            <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#F3F3F3" Offset="0"/>
+                                <GradientStop Color="#EBEBEB" Offset="0.5"/>
+                                <GradientStop Color="#DDDDDD" Offset="0.5"/>
+                                <GradientStop Color="#CDCDCD" Offset="1"/>
+                            </LinearGradientBrush>
+						</Button.Resources>
+					</Button>
+					<Button Content="Button" HorizontalAlignment="Left" Height="100" Margin="161,148,-261,-248" VerticalAlignment="Top" Width="100" Style="{DynamicResource ButtonFocusVisual}" Template="{DynamicResource ButtonControlTemplate1}"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="TabItem" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top" Width="57.32">
+				<Grid Background="#FFE5E5E5">
+					<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding LogCollectionForDataGrid}" VerticalGridLinesBrush="#FFF3F1F1" HorizontalGridLinesBrush="#FFF3F1F1" SelectionMode="Single" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="0,0,17,17">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding SourceBuffer}" ClipboardContentBinding="{x:Null}" Header="Source"/>
+							<DataGridTextColumn Binding="{Binding LocalTimestamp}" ClipboardContentBinding="{x:Null}" Header="LocalTimestamp"/>
+							<DataGridTextColumn Binding="{Binding RemoteTimestamp}" ClipboardContentBinding="{x:Null}" Header="RemoteTimestamp"/>
+							<DataGridTextColumn Binding="{Binding Tag}" ClipboardContentBinding="{x:Null}" Header="Tag"/>
+							<DataGridTextColumn Binding="{Binding Data}" ClipboardContentBinding="{x:Null}" Header="Data"/>
+						</DataGrid.Columns>
+						<i:Interaction.Behaviors>
+							<ei:DataStateBehavior/>
+						</i:Interaction.Behaviors>
+					</DataGrid>
+				</Grid>
+			</TabItem>
+		</TabControl>
+        
+	</Grid>
+</Window>

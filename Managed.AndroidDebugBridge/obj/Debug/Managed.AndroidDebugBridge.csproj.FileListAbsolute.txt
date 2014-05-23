@@ -1,0 +1,14 @@
+C:\Users\xingmzha\workspace\AOL\svn-working\trunk\Managed.AndroidDebugBridge\Managed.AndroidDebugBridge\bin\Debug\Managed.AndroidDebugBridge.dll
+C:\Users\xingmzha\workspace\AOL\svn-working\trunk\Managed.AndroidDebugBridge\Managed.AndroidDebugBridge\bin\Debug\Managed.AndroidDebugBridge.pdb
+C:\Users\xingmzha\workspace\AOL\svn-working\trunk\Managed.AndroidDebugBridge\Managed.AndroidDebugBridge\obj\Debug\Managed.AndroidDebugBridge.dll
+C:\Users\xingmzha\workspace\AOL\svn-working\trunk\Managed.AndroidDebugBridge\Managed.AndroidDebugBridge\obj\Debug\Managed.AndroidDebugBridge.pdb
+C:\Users\xingmzha\workspace\AOL\svn-working\trunk\Managed.AndroidDebugBridge\Managed.AndroidDebugBridge\obj\Debug\Managed.AndroidDebugBridge.csprojResolveAssemblyReference.cache
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Managed.AndroidDebugBridge\bin\Debug\Managed.AndroidDebugBridge.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Managed.AndroidDebugBridge\bin\Debug\Managed.AndroidDebugBridge.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Managed.AndroidDebugBridge\obj\Debug\Managed.AndroidDebugBridge.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Managed.AndroidDebugBridge\obj\Debug\Managed.AndroidDebugBridge.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Managed.AndroidDebugBridge\obj\Debug\Managed.AndroidDebugBridge.csprojResolveAssemblyReference.cache
+C:\Users\xingmzha\workspace\android\OratorAoLPerformance\Managed.AndroidDebugBridge\bin\Debug\Managed.AndroidDebugBridge.dll
+C:\Users\xingmzha\workspace\android\OratorAoLPerformance\Managed.AndroidDebugBridge\bin\Debug\Managed.AndroidDebugBridge.pdb
+C:\Users\xingmzha\workspace\android\OratorAoLPerformance\Managed.AndroidDebugBridge\obj\Debug\Managed.AndroidDebugBridge.dll
+C:\Users\xingmzha\workspace\android\OratorAoLPerformance\Managed.AndroidDebugBridge\obj\Debug\Managed.AndroidDebugBridge.pdb

@@ -1,0 +1,22 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:System="clr-namespace:System;assembly=mscorlib"
+	mc:Ignorable="d"
+	x:Class="Profiler.LogManager.LogDataView"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480">
+	<Grid x:Name="LayoutRoot">
+		<DataGrid AutoGenerateColumns="False" ItemsSource="{Binding LogCollection}" VerticalGridLinesBrush="#FFF3F1F1" HorizontalGridLinesBrush="#FFF3F1F1" SelectionMode="Single" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" CurrentItem="{Binding SelectedItem}" Margin="0,0,17,0">
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding SourceBuffer}" ClipboardContentBinding="{x:Null}" Header="Source"/>
+				<DataGridTextColumn Binding="{Binding LocalTimestamp}" ClipboardContentBinding="{x:Null}" Header="LocalTimestamp"/>
+				<DataGridTextColumn Binding="{Binding RemoteTimestamp}" ClipboardContentBinding="{x:Null}" Header="RemoteTimestamp"/>
+				<DataGridTextColumn Binding="{Binding Tag}" ClipboardContentBinding="{x:Null}" Header="Tag"/>
+				<DataGridTextColumn Binding="{Binding Data}" ClipboardContentBinding="{x:Null}" Header="Data"/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

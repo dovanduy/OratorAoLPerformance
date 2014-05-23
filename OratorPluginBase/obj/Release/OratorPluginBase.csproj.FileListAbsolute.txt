@@ -1,0 +1,10 @@
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\bin\Release\OratorPluginBase.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\bin\Release\OratorPluginBase.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\bin\Release\OratorCommonUtilities.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\bin\Release\protobuf-net.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\bin\Release\OratorCommonUtilities.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\bin\Release\protobuf-net.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\bin\Release\protobuf-net.xml
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\obj\Release\OratorPluginBase.csprojResolveAssemblyReference.cache
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\obj\Release\OratorPluginBase.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\obj\Release\OratorPluginBase.pdb

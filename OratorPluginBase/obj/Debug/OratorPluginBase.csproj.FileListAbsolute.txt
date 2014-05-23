@@ -21,13 +21,3 @@ C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\bin\Debug\
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\obj\Debug\OratorPluginBase.csprojResolveAssemblyReference.cache
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\obj\Debug\OratorPluginBase.dll
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorPluginBase\obj\Debug\OratorPluginBase.pdb
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\bin\Debug\OratorPluginBase.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\bin\Debug\OratorPluginBase.pdb
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\bin\Debug\OratorCommonUtilities.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\bin\Debug\protobuf-net.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\bin\Debug\OratorCommonUtilities.pdb
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\bin\Debug\protobuf-net.pdb
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\bin\Debug\protobuf-net.xml
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\obj\Debug\OratorPluginBase.csprojResolveAssemblyReference.cache
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\obj\Debug\OratorPluginBase.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorPluginBase\obj\Debug\OratorPluginBase.pdb

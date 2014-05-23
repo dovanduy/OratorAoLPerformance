@@ -4,12 +4,287 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	xmlns:local="clr-namespace:Profiler.Analyzer.Performance"
-	x:Class="Profiler.Analyzer.Performance.ReactionTImeView"
+    xmlns:charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts"
+    xmlns:local="clr-namespace:Profiler.Analyzer.Performance.Views"
+	x:Class="Profiler.Analyzer.Performance.Views.ReactionTimeView"
+	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480">
-	<UserControl.Resources>
-		<local:ReactionTImeViewModel x:Key="ReactionTImeViewModelDataSource" />
-	</UserControl.Resources>
 
-	<Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource ReactionTImeViewModelDataSource}}"/>
+    <UserControl.Resources>
+
+        <Style x:Key="NoBorder" TargetType="Border">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Black" />
+        </Style>
+
+        <local:HousingStockNumberList x:Key="FlatOrApartment">
+            <local:HousingStockNumber Period="1980-1999" ThousandsOfDwellings="409.4"/>
+            <local:HousingStockNumber Period="1960-1979" ThousandsOfDwellings="1261.7"/>
+            <local:HousingStockNumber Period="1940-1959" ThousandsOfDwellings="919.5"/>
+            <local:HousingStockNumber Period="1920-1939" ThousandsOfDwellings="322.1"/>
+            <local:HousingStockNumber Period="1900-1919" ThousandsOfDwellings="436.2"/>
+        </local:HousingStockNumberList>
+
+        <local:HousingStockNumberList x:Key="Bungalow">
+            <local:HousingStockNumber Period="1980-1999" ThousandsOfDwellings="208.1"/>
+            <local:HousingStockNumber Period="1960-1979" ThousandsOfDwellings="651"/>
+            <local:HousingStockNumber Period="1940-1959" ThousandsOfDwellings="604"/>
+            <local:HousingStockNumber Period="1920-1939" ThousandsOfDwellings="214.8"/>
+            <local:HousingStockNumber Period="1900-1919" ThousandsOfDwellings="26.8"/>
+        </local:HousingStockNumberList>
+
+        <local:HousingStockNumberList x:Key="Detached">
+            <local:HousingStockNumber Period="1980-1999" ThousandsOfDwellings="570.5"/>
+            <local:HousingStockNumber Period="1960-1979" ThousandsOfDwellings="644.3"/>
+            <local:HousingStockNumber Period="1940-1959" ThousandsOfDwellings="375.8"/>
+            <local:HousingStockNumber Period="1920-1939" ThousandsOfDwellings="456.4"/>
+            <local:HousingStockNumber Period="1900-1919" ThousandsOfDwellings="147.6"/>
+        </local:HousingStockNumberList>
+
+        <local:HousingStockNumberList x:Key="SemiDetached">
+            <local:HousingStockNumber Period="1980-1999" ThousandsOfDwellings="234.9"/>
+            <local:HousingStockNumber Period="1960-1979" ThousandsOfDwellings="1852.3"/>
+            <local:HousingStockNumber Period="1940-1959" ThousandsOfDwellings="1651"/>
+            <local:HousingStockNumber Period="1920-1939" ThousandsOfDwellings="1852.3"/>
+            <local:HousingStockNumber Period="1900-1919" ThousandsOfDwellings="275.2"/>
+        </local:HousingStockNumberList>
+
+        <local:HousingStockNumberList x:Key="Terraced">
+            <local:HousingStockNumber Period="1980-1999" ThousandsOfDwellings="288.6"/>
+            <local:HousingStockNumber Period="1960-1979" ThousandsOfDwellings="966.4"/>
+            <local:HousingStockNumber Period="1940-1959" ThousandsOfDwellings="751.7"/>
+            <local:HousingStockNumber Period="1920-1939" ThousandsOfDwellings="1020.1"/>
+            <local:HousingStockNumber Period="1900-1919" ThousandsOfDwellings="798.7"/>
+        </local:HousingStockNumberList>
+
+        <ControlTemplate x:Key="CustomTooltipTemplate">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="15,0,0,0" >
+                <Grid Margin="0" Background="LightGray" >
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="{Binding ThousandsOfDwellings, StringFormat='F01'}" />
+                        <TextBlock Margin="5,0"  Text="thousand dwellings built" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" MinHeight="480" MinWidth="640">
+		<Border Padding="6">
+			<TabControl Style="{x:Null}" ItemContainerStyle="{DynamicResource TabItemStyle1}">
+				<TabControl.Resources>
+					<Style x:Key="TabItemFocusVisual">
+						<Setter Property="Control.Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<Rectangle Margin="3,3,3,1" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+					<SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
+					<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+						<GradientStop Color="#F3F3F3" Offset="0"/>
+						<GradientStop Color="#EBEBEB" Offset="0.5"/>
+						<GradientStop Color="#DDDDDD" Offset="0.5"/>
+						<GradientStop Color="#CDCDCD" Offset="1"/>
+					</LinearGradientBrush>
+					<LinearGradientBrush x:Key="TabItemHotBackground" EndPoint="0,1" StartPoint="0,0">
+						<GradientStop Color="#EAF6FD" Offset="0.15"/>
+						<GradientStop Color="#D9F0FC" Offset=".5"/>
+						<GradientStop Color="#BEE6FD" Offset=".5"/>
+						<GradientStop Color="#A7D9F5" Offset="1"/>
+					</LinearGradientBrush>
+					<SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9"/>
+					<SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1"/>
+					<SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
+					<SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
+					<Style x:Key="TabItemStyle1" TargetType="{x:Type TabItem}">
+						<Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
+						<Setter Property="Foreground" Value="Black"/>
+						<Setter Property="Padding" Value="6,1,6,1"/>
+						<Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+						<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+						<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+						<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type TabItem}">
+									<Grid SnapsToDevicePixels="true">
+										<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+											<ContentPresenter x:Name="Content" ContentSource="Header" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+										</Border>
+									</Grid>
+									<ControlTemplate.Triggers>
+										<Trigger Property="IsMouseOver" Value="true">
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemHotBackground}"/>
+										</Trigger>
+										<Trigger Property="IsSelected" Value="true">
+											<Setter Property="Panel.ZIndex" Value="1"/>
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemSelectedBackground}"/>
+										</Trigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="false"/>
+												<Condition Property="IsMouseOver" Value="true"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource TabItemHotBorderBrush}"/>
+										</MultiTrigger>
+										<Trigger Property="TabStripPlacement" Value="Bottom">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="1,0,1,1"/>
+										</Trigger>
+										<Trigger Property="TabStripPlacement" Value="Left">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="1,1,0,1"/>
+										</Trigger>
+										<Trigger Property="TabStripPlacement" Value="Right">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="0,1,1,1"/>
+										</Trigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Top"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-2,-2,-1"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,0,0,1"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Bottom"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-1,-2,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,1,0,0"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Left"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-2,-1,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,0,1,0"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Right"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-1,-2,-2,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="1,0,0,0"/>
+										</MultiTrigger>
+										<Trigger Property="IsEnabled" Value="false">
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemDisabledBackground}"/>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource TabItemDisabledBorderBrush}"/>
+											<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</TabControl.Resources>
+				<TabItem Header="Chart">
+                    <Grid Background="White">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
+                        <charts:Chart Width="600" Height="350" x:Name="MainChart" Title="UK Housing Construction (1900-1999)" HorizontalAlignment="Center"
+                      Grid.Row="0" PlotAreaBorderStyle="{StaticResource NoBorder}" LegendPosition="OutsideTopRight" >
+
+                            <!-- Add zoom to the chart -->
+                            <charts:Chart.Behaviour>
+                                <charts:ZoomBehaviour/>
+                            </charts:Chart.Behaviour>
+
+                            <!-- Define the Y-Axis -->
+                            <charts:Chart.YAxis>
+                                <charts:CategoryAxis  ShowGridStripes="False"
+                                      ShowMajorGridlines="False"/>
+                            </charts:Chart.YAxis>
+
+                            <!-- Define the X-Axis -->
+                            <charts:Chart.XAxis>
+                                <charts:LinearAxis Title="Dwellings built (thousands)"
+                                   ShowMinorTicks="False" 
+                                   ShowMajorGridlines="False"/>
+                            </charts:Chart.XAxis>
+
+                            <charts:Chart.Series>
+                                <charts:StackedBarSeries x:Name="StackedBarSeries"
+                                           StackingMode="{Binding SelectedItem, ElementName=StackingMode}">
+                                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series" HighlightingEnabled="True">
+                                        <!-- Defining the data source using data binding -->
+                                        <charts:BarSeries.DataSeries>
+                                            <charts:BindableDataSeries Title="Flats"
+                                                   ItemsSource="{StaticResource FlatOrApartment}"
+                                                   XValueBinding="{Binding Path=ThousandsOfDwellings}"
+                                                   YValueBinding="{Binding Path=Period}"/>
+                                        </charts:BarSeries.DataSeries>
+                                    </charts:BarSeries>
+                                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series" HighlightingEnabled="True">
+                                        <!-- Defining the data source using data binding -->
+                                        <charts:BarSeries.DataSeries>
+                                            <charts:BindableDataSeries Title="Bungalows"
+                                                   ItemsSource="{StaticResource Bungalow}"
+                                                   XValueBinding="{Binding Path=ThousandsOfDwellings}"
+                                                   YValueBinding="{Binding Path=Period}"/>
+                                        </charts:BarSeries.DataSeries>
+                                    </charts:BarSeries>
+                                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series" HighlightingEnabled="True">
+                                        <!-- Defining the data source using data binding -->
+                                        <charts:BarSeries.DataSeries>
+                                            <charts:BindableDataSeries Title="Detached"
+                                                   ItemsSource="{StaticResource Detached}"
+                                                   XValueBinding="{Binding Path=ThousandsOfDwellings}"
+                                                   YValueBinding="{Binding Path=Period}"/>
+                                        </charts:BarSeries.DataSeries>
+                                    </charts:BarSeries>
+                                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series" HighlightingEnabled="True">
+                                        <!-- Defining the data source using data binding -->
+                                        <charts:BarSeries.DataSeries>
+                                            <charts:BindableDataSeries Title="Semi-Detached"
+                                                   ItemsSource="{StaticResource SemiDetached}"
+                                                   XValueBinding="{Binding Path=ThousandsOfDwellings}"
+                                                   YValueBinding="{Binding Path=Period}"/>
+                                        </charts:BarSeries.DataSeries>
+                                    </charts:BarSeries>
+                                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series" HighlightingEnabled="True">
+                                        <!-- Defining the data source using data binding -->
+                                        <charts:BarSeries.DataSeries>
+                                            <charts:BindableDataSeries Title="Terraced"
+                                                   ItemsSource="{StaticResource Terraced}"
+                                                   XValueBinding="{Binding Path=ThousandsOfDwellings}"
+                                                   YValueBinding="{Binding Path=Period}"/>
+                                        </charts:BarSeries.DataSeries>
+                                    </charts:BarSeries>
+                                </charts:StackedBarSeries>
+                            </charts:Chart.Series>
+                        </charts:Chart>
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 10, 0, 0" HorizontalAlignment="Center">
+                            <TextBlock Text="Stacking Style: " Margin="0, 0, 5, 0" FontWeight="Bold"/>
+                            <RadioButton x:Name="Stacked" Content="Stacked" Margin="0, 0, 5, 0" Checked="Stacked_Checked" IsChecked="True" />
+                            <RadioButton x:Name="OneHundredStacked" Content="100% Stacked" Checked="OneHundredStacked_Checked" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+				<TabItem Header="Record">
+					<DataGrid AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Instance}" ClipboardContentBinding="{x:Null}" Header="Instrance"/>
+							<DataGridTextColumn Binding="{Binding CMP}" ClipboardContentBinding="{x:Null}" Header="CMP"/>
+							<DataGridTextColumn Binding="{Binding StartStamp, StringFormat=dd/MM HH:mm:ss.fffffff}" ClipboardContentBinding="{x:Null}" Header="Start TimeStamp"/>
+							<DataGridTextColumn Binding="{Binding DisplayedStamp, StringFormat=dd/MM HH:mm:ss.fffffff}" ClipboardContentBinding="{x:Null}" Header="Displayed TimeStamp"/>
+							<DataGridTextColumn Binding="{Binding Duration}" ClipboardContentBinding="{x:Null}" Header="Duration" HeaderStringFormat=""/>
+							<DataGridTextColumn Binding="{Binding ActualTimeSpan}" ClipboardContentBinding="{x:Null}" Header="TimeSpan"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+
+			</TabControl>
+		</Border>
+	</Grid>
 </UserControl>

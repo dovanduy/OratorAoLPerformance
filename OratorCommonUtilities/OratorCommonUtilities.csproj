@@ -85,6 +85,7 @@
       <DependentUpon>ModalDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="NotificationViewModelBase.cs" />
+    <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="OneTimeNotificationViewModel.cs" />
     <Compile Include="OratorReport.cs" />
     <Compile Include="OratorSettingsViewModelBase.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="TabContent.cs" />
     <Compile Include="UIServices.cs" />
     <Compile Include="ValueConverters\Converters.cs" />
+    <Compile Include="ModelBase.cs" />
     <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

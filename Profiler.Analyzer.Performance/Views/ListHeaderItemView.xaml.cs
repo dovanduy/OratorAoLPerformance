@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Profiler.Analyzer.Performance
+namespace Profiler.Analyzer.Performance.Views
 {
 	/// <summary>
 	/// Interaction logic for ListHeaderItemView.xaml

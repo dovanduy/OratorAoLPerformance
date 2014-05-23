@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Profiler.Analyzer.Performance
+namespace Profiler.Analyzer.Performance.Views
 {
 	/// <summary>
 	/// Interaction logic for PerformanceSessionView.xaml

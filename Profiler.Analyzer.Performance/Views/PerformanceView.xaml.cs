@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using OratorPluginBase;
 using OratorCommonUtilities;
 
-namespace Profiler.Analyzer.Performance
+namespace Profiler.Analyzer.Performance.Views
 {
 	/// <summary>
 	/// Interaction logic for PerformanceUI.xaml

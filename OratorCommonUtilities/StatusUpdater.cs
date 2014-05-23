@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -8,9 +10,10 @@ namespace OratorCommonUtilities
     /// <summary>
     /// Class that can be used for updating the GUI during long tasks. Can be used to update the progression bar, status bar or both at the same time.
     /// </summary>
-    public class StatusUpdater : IStatusUpdater
+    public class StatusUpdater : NotifyPropertyChangedBase , IStatusUpdater, IDisposable
     {
-        public event SystemLogUpdateEventHandler SystemLogUpdateEvent;
+        #region StatusUpdater
+		public event SystemLogUpdateEventHandler SystemLogUpdateEvent;
         protected virtual void OnSystemLogUpdate(string logUpdateText)
         {
             if (SystemLogUpdateEvent != null)
@@ -37,6 +40,27 @@ namespace OratorCommonUtilities
                 NotificationEventArgs args = new NotificationEventArgs(new OneTimeNotificationViewModel(notificationText));
                 this.NotificationEvent(this, args);
             }
+        } 
+	#endregion
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Invoked when this object is being removed from the application
+        /// and will be subject to garbage collection.
+        /// </summary>
+        public virtual void Dispose()
+        {
+            this.OnDispose();
         }
+
+        /// <summary>
+        /// Child classes can override this method to perform 
+        /// clean-up logic, such as removing event handlers.
+        /// </summary>
+        protected virtual void OnDispose()
+        {
+        }
+        #endregion // IDisposable Members
     }
 }

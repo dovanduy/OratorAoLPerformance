@@ -4,10 +4,11 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:logger="clr-namespace:Profiler.LogManager;assembly=Profiler.LogManager"
-    xmlns:loggerView="clr-namespace:Profiler.LogManager.Views;assembly=Profiler.LogManager"
     xmlns:loggerVM="clr-namespace:Profiler.LogManager.ViewModels;assembly=Profiler.LogManager"
+    xmlns:localV="clr-namespace:Profiler.Analyzer.Performance.Views"
+    xmlns:localVM="clr-namespace:Profiler.Analyzer.Performance.ViewModels"
 	mc:Ignorable="d"
-	x:Class="Profiler.Analyzer.Performance.PerformanceSessionView"
+	x:Class="Profiler.Analyzer.Performance.Views.PerformanceSessionView"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480">
 
@@ -16,13 +17,22 @@
             <logger:ADBLogDataView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type loggerVM:OpentimeViewModel}">
-            <loggerView:OpentimeView/>
+        <!--<DataTemplate DataType="{x:Type loggerVM:LogDataViewModel}">
+            <logger:LogDataView/>
+        </DataTemplate>-->
+
+        <DataTemplate DataType="{x:Type localVM:OpenTimeViewModel}">
+            <localV:OpenTimeView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type loggerVM:LogDataViewModel}">
-            <logger:LogDataView/>
+        <DataTemplate DataType="{x:Type localVM:FramePerSecondViewModel}">
+            <localV:FramePerSecondView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type localVM:ReactionTimeViewModel}">
+            <localV:ReactionTimeView/>
+        </DataTemplate>
+
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
         <TabControl BorderThickness="1" TabStripPlacement="Right" ItemsSource="{Binding ViewModels}" SelectedItem="{Binding SelectedVM}">

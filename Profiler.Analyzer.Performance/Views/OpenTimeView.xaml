@@ -1,0 +1,253 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts"
+    xmlns:local="clr-namespace:Profiler.Analyzer.Performance.Views"
+	xmlns:Primitives="clr-namespace:Visiblox.Charts.Primitives;assembly=Visiblox.Charts"
+	mc:Ignorable="d"
+	x:Class="Profiler.Analyzer.Performance.Views.OpenTimeView"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+    <UserControl.Resources>
+        <local:CourseList x:Key="Courses">
+        	<local:Course CourseName="Computer Architecture" Timetable="Monday 9am" Lecturer="Len Dahand" Score="37" />
+        	<local:Course CourseName="Software Engineering" Timetable="Tuesday 2pm" Lecturer="Mike Rowesoft" Score="74" />
+        	<local:Course CourseName="Computer Security" Timetable="Wednesday 10am" Lecturer="Alice Non" Score="56" />
+        	<local:Course CourseName="UML" Timetable="Friday 11am" Lecturer="Gill Bates" Score="95" />
+        	<local:Course CourseName="Algorithms and Data Structures" Timetable="Thursday 9am" Lecturer="Len Dahand" Score="22" />
+        </local:CourseList>
+        
+        <ControlTemplate x:Key="CustomTooltipTemplate">
+        	<Border BorderBrush="Black" BorderThickness="1" Margin="15,0,0,0" >
+        		<Grid Margin="0" Background="LightGray" >
+        			<StackPanel Orientation="Horizontal" >
+        				<TextBlock Text="Click on " />
+        				<TextBlock Text="{Binding CourseName}" />
+        				<TextBlock Text=" bar to edit its data" />
+        			</StackPanel>
+        		</Grid>
+        	</Border>
+        </ControlTemplate>
+
+        <Style x:Key="NoLine" TargetType="{x:Type Line}">
+        	<Setter Property="StrokeThickness" Value="0" />
+        </Style>
+
+        <Style x:Key="NoBorder" TargetType="{x:Type Border}">
+        	<Setter Property="BorderThickness" Value="0" />
+        	<Setter Property="BorderBrush" Value="Black" />
+        </Style>
+        <Storyboard x:Key="OnMouseEnter1">
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Cursor)" Storyboard.TargetName="barSeries">
+        		<DiscreteObjectKeyFrame KeyTime="0">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Cursor>Hand</Cursor>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        	</ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </UserControl.Resources>
+
+	<Grid x:Name="LayoutRoot" MinWidth="640" MinHeight="480">
+		<Border Padding="6">
+			<TabControl Style="{x:Null}" ItemContainerStyle="{DynamicResource TabItemStyle1}">
+				<TabControl.Resources>
+					<Style x:Key="TabItemFocusVisual">
+						<Setter Property="Control.Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<Rectangle Margin="3,3,3,1" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+					<SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
+					<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+						<GradientStop Color="#F3F3F3" Offset="0"/>
+						<GradientStop Color="#EBEBEB" Offset="0.5"/>
+						<GradientStop Color="#DDDDDD" Offset="0.5"/>
+						<GradientStop Color="#CDCDCD" Offset="1"/>
+					</LinearGradientBrush>
+					<LinearGradientBrush x:Key="TabItemHotBackground" EndPoint="0,1" StartPoint="0,0">
+						<GradientStop Color="#EAF6FD" Offset="0.15"/>
+						<GradientStop Color="#D9F0FC" Offset=".5"/>
+						<GradientStop Color="#BEE6FD" Offset=".5"/>
+						<GradientStop Color="#A7D9F5" Offset="1"/>
+					</LinearGradientBrush>
+					<SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9"/>
+					<SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1"/>
+					<SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
+					<SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
+					<Style x:Key="TabItemStyle1" TargetType="{x:Type TabItem}">
+						<Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
+						<Setter Property="Foreground" Value="Black"/>
+						<Setter Property="Padding" Value="6,1,6,1"/>
+						<Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+						<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+						<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+						<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type TabItem}">
+									<Grid SnapsToDevicePixels="true">
+										<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+											<ContentPresenter x:Name="Content" ContentSource="Header" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+										</Border>
+									</Grid>
+									<ControlTemplate.Triggers>
+										<Trigger Property="IsMouseOver" Value="true">
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemHotBackground}"/>
+										</Trigger>
+										<Trigger Property="IsSelected" Value="true">
+											<Setter Property="Panel.ZIndex" Value="1"/>
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemSelectedBackground}"/>
+										</Trigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="false"/>
+												<Condition Property="IsMouseOver" Value="true"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource TabItemHotBorderBrush}"/>
+										</MultiTrigger>
+										<Trigger Property="TabStripPlacement" Value="Bottom">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="1,0,1,1"/>
+										</Trigger>
+										<Trigger Property="TabStripPlacement" Value="Left">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="1,1,0,1"/>
+										</Trigger>
+										<Trigger Property="TabStripPlacement" Value="Right">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="0,1,1,1"/>
+										</Trigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Top"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-2,-2,-1"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,0,0,1"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Bottom"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-1,-2,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,1,0,0"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Left"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-2,-1,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,0,1,0"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Right"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-1,-2,-2,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="1,0,0,0"/>
+										</MultiTrigger>
+										<Trigger Property="IsEnabled" Value="false">
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemDisabledBackground}"/>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource TabItemDisabledBorderBrush}"/>
+											<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</TabControl.Resources>
+				<TabItem Header="Chart">
+					<Grid Background="#FFE5E5E5">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<charts:Chart x:Name="CourseInformation" Title="Open Time" 
+							LegendVisibility="Collapsed" PlotAreaBorderStyle="{StaticResource NoBorder}" Margin="30,10" MinHeight="300" Padding="20,10" MaxHeight="350" MaxWidth="600">
+
+							<charts:Chart.YAxis>
+								<charts:CategoryAxis ShowMajorTicks="False" ShowMajorGridlines="False" AxisLineStyle="{StaticResource NoLine}" MinWidth="47" />
+							</charts:Chart.YAxis>
+							<charts:Chart.XAxis>
+								<charts:LinearAxis ShowMajorGridlines="True" ShowMinorTicks="False" MajorTickInterval="10" Title="Duration" LabelFormatString="0" Range="{Binding XAxisDoubleRange}"/>
+							</charts:Chart.XAxis>
+							<charts:Chart.Series>
+								<charts:BarSeries x:Name="barSeries" SelectionMode="SinglePoint" ToolTipEnabled="True" Template="{DynamicResource ChartSeriesCommonBaseControlTemplate1}">
+									<charts:BarSeries.Resources>
+										<ControlTemplate x:Key="ChartSeriesCommonBaseControlTemplate1" TargetType="{x:Type charts:ChartSeriesCommonBase}">
+											<Primitives:ZoomCanvas x:Name="LayoutRoot" Height="Auto"/>
+											<ControlTemplate.Triggers>
+												<Trigger Property="IsMouseOver" Value="True">
+													<Setter Property="Cursor" Value="Hand"/>
+												</Trigger>
+											</ControlTemplate.Triggers>
+										</ControlTemplate>
+									</charts:BarSeries.Resources>
+									<charts:BarSeries.ToolTipTemplate>
+										<StaticResource ResourceKey="CustomTooltipTemplate"/>
+									</charts:BarSeries.ToolTipTemplate>
+									<charts:BarSeries.DataSeries>
+										<charts:BindableDataSeries ItemsSource="{Binding OpenTimeCollection}" YValueBinding="{Binding Alias}" XValueBinding="{Binding Duration}" />
+									</charts:BarSeries.DataSeries>
+								</charts:BarSeries>
+							</charts:Chart.Series>
+						</charts:Chart>
+						<StackPanel Orientation="Vertical" HorizontalAlignment="Center" x:Name="CourseDetails" Margin="0,3,0,2" Grid.Row="1"  >
+							<Grid HorizontalAlignment="Center" 
+								DataContext="{Binding ElementName=CourseInformation}">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition/>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="110" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Text="CMP:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+								<TextBox x:Name="CMP" Text="{Binding Series[0].SelectedItems[0].CMP, Mode=TwoWay, ValidatesOnExceptions=True}" Width="300" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
+
+								<TextBlock Text="StartStamp:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+								<TextBox x:Name="StartStamp" Text="{Binding Series[0].SelectedItems[0].StartStamp, Mode=TwoWay}" Width="300" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
+
+								<TextBlock Text="DisplayedStamp:"  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+								<TextBox x:Name="DisplayedStamp" Text="{Binding Series[0].SelectedItems[0].DisplayedStamp, Mode=TwoWay}" Width="300" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
+
+								<TextBlock Text="ActualTimeSpan:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+								<TextBox x:Name="ActualTimeSpan" Text="{Binding Series[0].SelectedItems[0].ActualTimeSpan, Mode=TwoWay, ValidatesOnExceptions=True}" Width="300" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
+								<TextBlock Text="Duration:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3"/>
+								<TextBox x:Name="Duration" Text="{Binding Series[0].SelectedItems[0].Duration, Mode=TwoWay, ValidatesOnExceptions=True}" Width="300" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
+
+							</Grid>
+						</StackPanel>
+					</Grid>
+				</TabItem>
+				<TabItem Header="Record">
+					<DataGrid AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Instance}" ClipboardContentBinding="{x:Null}" Header="Instrance"/>
+							<DataGridTextColumn Binding="{Binding CMP}" ClipboardContentBinding="{x:Null}" Header="CMP"/>
+							<DataGridTextColumn Binding="{Binding StartStamp, StringFormat=dd/MM HH:mm:ss.fffffff}" ClipboardContentBinding="{x:Null}" Header="Start TimeStamp"/>
+							<DataGridTextColumn Binding="{Binding DisplayedStamp, StringFormat=dd/MM HH:mm:ss.fffffff}" ClipboardContentBinding="{x:Null}" Header="Displayed TimeStamp"/>
+							<DataGridTextColumn Binding="{Binding Duration}" ClipboardContentBinding="{x:Null}" Header="Duration" HeaderStringFormat=""/>
+							<DataGridTextColumn Binding="{Binding ActualTimeSpan}" ClipboardContentBinding="{x:Null}" Header="TimeSpan"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+
+			</TabControl>
+		</Border>
+	</Grid>
+</UserControl>

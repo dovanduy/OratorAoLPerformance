@@ -11,6 +11,7 @@ using OratorCommonUtilities.Commands;
 using Profiler.Analyzer.Performance.Models;
 using Profiler.LogManager.Models;
 using Managed.Adb.Logs;
+using Profiler.Analyzer.Performance.Views;
 
 namespace Profiler.Analyzer.Performance.ViewModels
 {

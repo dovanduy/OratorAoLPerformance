@@ -43,10 +43,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Visiblox.Charts, Version=4.0.1.49882, Culture=neutral, PublicKeyToken=1543c03f04c4461b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Resources\visiblox\Visiblox.Charts.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -68,7 +64,6 @@
     <Compile Include="Models\LogData.cs" />
     <Compile Include="Models\Logger.cs" />
     <Compile Include="Models\LogListerner.cs" />
-    <Compile Include="Models\LogPipeline.cs" />
     <Compile Include="Models\LogPriority.cs" />
     <Compile Include="Models\LogReceivedHandler.cs" />
     <Compile Include="Models\LogTimestampMode.cs" />
@@ -94,16 +89,11 @@
     </Compile>
     <Compile Include="ViewModels\ADBLogViewModel.cs" />
     <Compile Include="ViewModels\LogDataViewModel.cs" />
-    <Compile Include="ViewModels\OpentimeViewModel.cs" />
     <Compile Include="Views\ADBLogDataView.xaml.cs">
       <DependentUpon>ADBLogDataView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GraphbuilderRulerBehaviour.cs" />
     <Compile Include="Views\LogDataView.xaml.cs">
       <DependentUpon>LogDataView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\OpentimeView.xaml.cs">
-      <DependentUpon>OpentimeView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -134,10 +124,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="gear.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\ADBLogDataView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -145,10 +131,6 @@
     <Page Include="Views\LogDataView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\OpentimeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -47,7 +47,7 @@ namespace Profiler.LogManager.Models
         /// </summary>
         public void Start()
         {
-            Start("logcat -v time");
+            Start("logcat");
         }
 
         /// <summary>

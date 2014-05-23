@@ -4,12 +4,12 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	xmlns:local="clr-namespace:Profiler.Analyzer.Performance"
-	xmlns:localViewModel="clr-namespace:Profiler.Analyzer.Performance.ViewModels"
-	x:Class="Profiler.Analyzer.Performance.PerformanceView">
+	xmlns:localV="clr-namespace:Profiler.Analyzer.Performance.Views"
+	xmlns:localVM="clr-namespace:Profiler.Analyzer.Performance.ViewModels"
+	x:Class="Profiler.Analyzer.Performance.Views.PerformanceView">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type localViewModel:PerformanceSessionViewModel}">
-            <local:PerformanceSessionView/>
+        <DataTemplate DataType="{x:Type localVM:PerformanceSessionViewModel}">
+            <localV:PerformanceSessionView/>
         </DataTemplate>
     </UserControl.Resources>
 	<Grid x:Name="MainGrid">
@@ -178,10 +178,13 @@
 			</GridSplitter.Background>
 		</GridSplitter>
 		<DockPanel x:Name="SessionDetailDockPanel" Grid.Column="2" Margin="0" MinWidth="640" MinHeight="480" Grid.Row="1">
-            <TabControl Margin="0" DockPanel.Dock="Top" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Padding="4" BorderThickness="0" ItemsSource="{Binding SessionViewModelCollection}" SelectedItem="{Binding SelectedSessionViewModel}">
+            <TabControl Margin="0" DockPanel.Dock="Top" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Padding="4" BorderThickness="0" ItemsSource="{Binding SessionViewModelCollection}" SelectedItem="{Binding SelectedSessionViewModel}" ItemContainerStyle="{DynamicResource TabItemStyle1}">
                 <TabControl.Resources>
                     <Style TargetType="{x:Type TabItem}">
                         <Setter Property="Header" Value="{Binding Model.SessionName}"/>
+                    </Style>
+                    <Style x:Key="TabItemStyle1" TargetType="{x:Type TabItem}">
+                    	<Setter Property="Header" Value="{Binding Model.SessionName}"/>
                     </Style>
                 </TabControl.Resources>
             </TabControl>

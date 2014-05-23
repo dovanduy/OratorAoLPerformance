@@ -13,7 +13,9 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
+    <ExpressionBlendVersion>12.0.50311.0</ExpressionBlendVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,10 +34,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -43,17 +49,37 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Visiblox.Charts">
+      <HintPath>..\References\visiblox\Visiblox.Charts.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers.cs" />
+    <Compile Include="Models\LogPipeline.cs" />
+    <Compile Include="Models\FramePerSecondModel.cs" />
+    <Compile Include="Models\OpenTimeModel.cs" />
     <Compile Include="Models\PerformanceSession.cs" />
+    <Compile Include="Models\ReactionTimeModel.cs" />
     <Compile Include="ViewModels\ListHeaderItemViewModel.cs" />
+    <Compile Include="ViewModels\FramePerSecondViewModel.cs" />
+    <Compile Include="ViewModels\ReactionTimeViewModel.cs" />
+    <Compile Include="ViewModels\OpenTimeViewModel.cs" />
     <Compile Include="ViewModels\PerformanceSessionViewModel.cs" />
     <Compile Include="ViewModels\PerformanceViewModel.cs" />
     <Compile Include="Views\ListHeaderItemView.xaml.cs">
       <DependentUpon>ListHeaderItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FramePerSecondView.xaml.cs">
+      <DependentUpon>FramePerSecondView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReactionTimeView.xaml.cs">
+      <DependentUpon>ReactionTimeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OpenTimeView.xaml.cs">
+      <DependentUpon>OpenTimeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PerformanceSessionView.xaml.cs">
       <DependentUpon>PerformanceSessionView.xaml</DependentUpon>
@@ -62,6 +88,18 @@
       <DependentUpon>PerformanceView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\ListHeaderItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FramePerSecondView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReactionTimeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OpenTimeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -97,6 +135,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Views\Data\EURtoUSD.cvs" />
+    <None Include="Views\Data\GBPtoEUR.cvs" />
+    <None Include="Views\Data\GBPtoUSD.cvs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

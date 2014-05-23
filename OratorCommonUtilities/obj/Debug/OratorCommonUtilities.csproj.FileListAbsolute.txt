@@ -26,17 +26,3 @@ C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\D
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\OratorCommonUtilities.g.resources
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\OratorCommonUtilities.dll
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\OratorCommonUtilities.pdb
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\bin\Debug\OratorCommonUtilities.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\bin\Debug\OratorCommonUtilities.pdb
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\bin\Debug\protobuf-net.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\bin\Debug\protobuf-net.pdb
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\bin\Debug\protobuf-net.xml
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\OratorCommonUtilities.csprojResolveAssemblyReference.cache
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\CircularProgressBar.baml
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\ModalDialog.baml
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\CircularProgressBar.g.cs
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\ModalDialog.g.cs
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\OratorCommonUtilities_MarkupCompile.cache
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\OratorCommonUtilities.g.resources
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\OratorCommonUtilities.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\OratorCommonUtilities\obj\Debug\OratorCommonUtilities.pdb

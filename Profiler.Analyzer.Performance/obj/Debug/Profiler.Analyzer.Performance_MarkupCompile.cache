@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\
 Profiler.Analyzer.Performance
 none
 false
 DEBUG;TRACE
 
-32085328686
+61942214768
 
-101354722619
-17-1944166797
-Views\ListHeaderItemView.xaml;Views\PerformanceSessionView.xaml;Views\PerformanceView.xaml;
+21-1112351145
+20-2089078542
+Views\ListHeaderItemView.xaml;Views\FramePerSecondView.xaml;Views\ReactionTimeView.xaml;Views\OpenTimeView.xaml;Views\PerformanceSessionView.xaml;Views\PerformanceView.xaml;
 
 False
 

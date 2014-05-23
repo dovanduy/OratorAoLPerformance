@@ -1,11 +1,6 @@
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\Debug\protobuf-net.xml
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\Debug\protobuf-net.dll
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\Debug\protobuf-net.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\Debug\protobuf-net.csprojResolveAssemblyReference.cache
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\Debug\protobuf-net.dll
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\Debug\protobuf-net.pdb
-C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\Debug\protobuf-net.csprojResolveAssemblyReference.cache
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\protobuf-net\bin\Debug\protobuf-net.xml
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\protobuf-net\bin\Debug\protobuf-net.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\protobuf-net\bin\Debug\protobuf-net.pdb
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\protobuf-net\obj\Debug\protobuf-net.dll
-C:\Users\xingmzha\workspace\android\OratorAoLPerformance\protobuf-net\obj\Debug\protobuf-net.pdb

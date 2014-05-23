@@ -1,5 +1,6 @@
 ﻿using OratorCommonUtilities;
 using Profiler.Analyzer.Performance.Models;
+using Profiler.Analyzer.Performance.Views;
 using Profiler.LogManager.Models;
 using Profiler.LogManager.ViewModels;
 using System;
@@ -35,9 +36,20 @@ namespace Profiler.Analyzer.Performance.ViewModels
             }
         }
 
+       
+
         public PerformanceSessionViewModel()
         {
             ViewModels = new ObservableCollection<ViewModelBase>();
+
+            FramePerSecondViewModel fpsVM = new FramePerSecondViewModel();
+            ViewModels.Add(fpsVM);
+
+            OpenTimeViewModel opentimeVM = new OpenTimeViewModel();
+            ViewModels.Add(opentimeVM);
+
+            ReactionTimeViewModel reactionTimeVM = new ReactionTimeViewModel();
+            ViewModels.Add(reactionTimeVM);
 
             ADBLogViewModel adbLoggerVM = new ADBLogViewModel();
             ADBLogDataReceivedEvent += adbLoggerVM.ReceivedLogData;
@@ -47,10 +59,7 @@ namespace Profiler.Analyzer.Performance.ViewModels
             //LogDataReceivedEvent += logDataVM.ReceivedLogData;
             //ViewModels.Add(logDataVM);
 
-            //OpentimeViewModel opentimeVM = new OpentimeViewModel();
-            //ViewModels.Add(opentimeVM);
-
-            SelectedVM = adbLoggerVM;
+            SelectedVM = fpsVM;
 
             View = new PerformanceSessionView();
             Model = new PerformanceSession();
@@ -69,10 +78,20 @@ namespace Profiler.Analyzer.Performance.ViewModels
 
         public void OnADBLogDataReceived(object sendor, LogDataReceivedEventArgs e)
         {
+            // Cache
+
+            // Dispatcher
+
+
             if (ADBLogDataReceivedEvent != null)
             {
                 ADBLogDataReceivedEvent(sendor, e);
             }
+
+
         }
+
+
+
     }
 }

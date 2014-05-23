@@ -5,7 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	xmlns:local="clr-namespace:Profiler.Analyzer.Performance"
-	x:Class="Profiler.Analyzer.Performance.ListHeaderItemView" d:DesignHeight="480" Height="20" Width="153.433">
+	x:Class="Profiler.Analyzer.Performance.Views.ListHeaderItemView" d:DesignHeight="480" Height="20" Width="153.433">
 	<UserControl.Resources>
 		<!--<local:ListHeaderItemViewModel x:Key="ListHeaderItemViewModelDataSource" />-->
 	</UserControl.Resources>

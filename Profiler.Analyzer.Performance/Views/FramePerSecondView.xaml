@@ -1,0 +1,209 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="Profiler.Analyzer.Performance.Views.FramePerSecondView"
+    xmlns:charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480">
+    
+    <UserControl.Resources>
+        <Style x:Key="NoBorder" TargetType="Border">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Black" />
+        </Style>
+    </UserControl.Resources>
+    
+	<Grid x:Name="LayoutRoot" MinWidth="640" MinHeight="480">
+		<Border Padding="6">
+			<TabControl Style="{x:Null}" ItemContainerStyle="{DynamicResource TabItemStyle1}">
+				<TabControl.Resources>
+					<Style x:Key="TabItemFocusVisual">
+						<Setter Property="Control.Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<Rectangle Margin="3,3,3,1" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+					<SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
+					<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+						<GradientStop Color="#F3F3F3" Offset="0"/>
+						<GradientStop Color="#EBEBEB" Offset="0.5"/>
+						<GradientStop Color="#DDDDDD" Offset="0.5"/>
+						<GradientStop Color="#CDCDCD" Offset="1"/>
+					</LinearGradientBrush>
+					<LinearGradientBrush x:Key="TabItemHotBackground" EndPoint="0,1" StartPoint="0,0">
+						<GradientStop Color="#EAF6FD" Offset="0.15"/>
+						<GradientStop Color="#D9F0FC" Offset=".5"/>
+						<GradientStop Color="#BEE6FD" Offset=".5"/>
+						<GradientStop Color="#A7D9F5" Offset="1"/>
+					</LinearGradientBrush>
+					<SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9"/>
+					<SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1"/>
+					<SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
+					<SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
+					<Style x:Key="TabItemStyle1" TargetType="{x:Type TabItem}">
+						<Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
+						<Setter Property="Foreground" Value="Black"/>
+						<Setter Property="Padding" Value="6,1,6,1"/>
+						<Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+						<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+						<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+						<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type TabItem}">
+									<Grid SnapsToDevicePixels="true">
+										<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+											<ContentPresenter x:Name="Content" ContentSource="Header" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+										</Border>
+									</Grid>
+									<ControlTemplate.Triggers>
+										<Trigger Property="IsMouseOver" Value="true">
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemHotBackground}"/>
+										</Trigger>
+										<Trigger Property="IsSelected" Value="true">
+											<Setter Property="Panel.ZIndex" Value="1"/>
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemSelectedBackground}"/>
+										</Trigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="false"/>
+												<Condition Property="IsMouseOver" Value="true"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource TabItemHotBorderBrush}"/>
+										</MultiTrigger>
+										<Trigger Property="TabStripPlacement" Value="Bottom">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="1,0,1,1"/>
+										</Trigger>
+										<Trigger Property="TabStripPlacement" Value="Left">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="1,1,0,1"/>
+										</Trigger>
+										<Trigger Property="TabStripPlacement" Value="Right">
+											<Setter Property="BorderThickness" TargetName="Bd" Value="0,1,1,1"/>
+										</Trigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Top"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-2,-2,-1"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,0,0,1"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Bottom"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-1,-2,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,1,0,0"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Left"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-2,-2,-1,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="0,0,1,0"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="true"/>
+												<Condition Property="TabStripPlacement" Value="Right"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Margin" Value="-1,-2,-2,-2"/>
+											<Setter Property="Margin" TargetName="Content" Value="1,0,0,0"/>
+										</MultiTrigger>
+										<Trigger Property="IsEnabled" Value="false">
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemDisabledBackground}"/>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource TabItemDisabledBorderBrush}"/>
+											<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</TabControl.Resources>
+				<TabItem Header="Chart">
+					<Grid Background="#FFE5E5E5">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+                        <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
+                        <charts:Chart Grid.Row="0"  Name="chart" Width="600" Height="350" Title="Frame Per Second" HorizontalAlignment="Center" Background="Transparent" 
+                       PlotAreaBorderStyle="{StaticResource NoBorder}" LegendVisibility="Collapsed" >
+
+                            <!-- Add zooming and a trackball -->
+                            <charts:Chart.Behaviour>
+                                <charts:BehaviourManager x:Name="behaviourManager" AllowMultipleEnabled="True">
+                                    <charts:TrackballBehaviour x:Name="track" />
+                                    <charts:ZoomBehaviour />
+                                </charts:BehaviourManager>
+                            </charts:Chart.Behaviour>
+
+                            <!-- Define x and y axes. -->
+                            <charts:Chart.XAxis>
+                                <charts:DateTimeAxis ShowMinorTicks="False" ShowMajorGridlines="False">
+                                    <charts:DateTimeAxis.Range>
+                                        <charts:DateTimeRange Minimum="01/01/2006" Maximum="04/03/2010"/>
+                                    </charts:DateTimeAxis.Range>
+                                </charts:DateTimeAxis>
+                            </charts:Chart.XAxis>
+                            <charts:Chart.YAxis>
+                                <charts:LinearAxis LabelFormatString="0'fps" ShowMinorTicks="False" ShowMajorGridlines="False" Title="Change">
+                                    <charts:LinearAxis.Range>
+                                        <charts:DoubleRange Minimum="0" Maximum="70"/>
+                                    </charts:LinearAxis.Range>
+                                </charts:LinearAxis>
+                            </charts:Chart.YAxis>
+                        </charts:Chart>
+
+                        <!-- Define display below chart -->
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,50,0">
+                            <!-- Date display -->
+                            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[0].X, StringFormat='dd/MM/yyyy'}" Margin="0,0,10,0"/>
+
+                            <!-- Series data display -->
+                            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[0].LineStroke}" VerticalAlignment="Center" />
+                            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[0].DataSeries.Title}"/>
+                            <TextBlock Margin="4,0,0,0"  Text="(" />
+                            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[0].Y, StringFormat=0.00}" Width="38" />
+                            <TextBlock Text="fps)" />
+
+                            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[1].LineStroke}" VerticalAlignment="Center" />
+                            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[1].DataSeries.Title}"  />
+                            <TextBlock Margin="4,0,0,0"  Text="(" />
+                            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[1].Y, StringFormat=0.00}" Width="38" />
+                            <TextBlock Text="fps)" />
+
+                            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[2].LineStroke}" VerticalAlignment="Center" />
+                            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[2].DataSeries.Title}" />
+                            <TextBlock Margin="4,0,0,0"  Text="(" />
+                            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[2].Y, StringFormat=0.00}" Width="38" />
+                            <TextBlock Text="fps)" />
+                        </StackPanel>
+                    </Grid>
+				</TabItem>
+				<TabItem Header="Record">
+					<DataGrid AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Instance}" ClipboardContentBinding="{x:Null}" Header="Instrance"/>
+							<DataGridTextColumn Binding="{Binding CMP}" ClipboardContentBinding="{x:Null}" Header="CMP"/>
+							<DataGridTextColumn Binding="{Binding StartStamp, StringFormat=dd/MM HH:mm:ss.fffffff}" ClipboardContentBinding="{x:Null}" Header="Start TimeStamp"/>
+							<DataGridTextColumn Binding="{Binding DisplayedStamp, StringFormat=dd/MM HH:mm:ss.fffffff}" ClipboardContentBinding="{x:Null}" Header="Displayed TimeStamp"/>
+							<DataGridTextColumn Binding="{Binding Duration}" ClipboardContentBinding="{x:Null}" Header="Duration" HeaderStringFormat=""/>
+							<DataGridTextColumn Binding="{Binding ActualTimeSpan}" ClipboardContentBinding="{x:Null}" Header="TimeSpan"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+
+			</TabControl>
+		</Border>
+	</Grid>
+</UserControl>

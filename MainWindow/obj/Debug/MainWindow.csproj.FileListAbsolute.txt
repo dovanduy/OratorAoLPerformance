@@ -8,6 +8,7 @@ C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Profil
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Profiler.DeviceMonitor.dll
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Profiler.LogManager.dll
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\protobuf-net.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Visiblox.Charts.dll
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Managed.AndroidDebugBridge.pdb
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\OratorCommonUtilities.pdb
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\OratorPluginBase.pdb
@@ -16,9 +17,11 @@ C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Profil
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Profiler.LogManager.pdb
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\protobuf-net.pdb
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\protobuf-net.xml
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Visiblox.Charts.xml
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\MainWindow.csprojResolveAssemblyReference.cache
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\MainWindow.g.cs
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\App.g.cs
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\MainWindow_MarkupCompile.cache
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\MainWindow_MarkupCompile.lref
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\MainWindow.baml
@@ -27,6 +30,3 @@ C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\Orator
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.Cache
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\MainWindow.pdb
-C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Visiblox.Charts.dll
-C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\MainWindow\bin\Debug\Visiblox.Charts.xml

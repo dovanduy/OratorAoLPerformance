@@ -53,13 +53,13 @@ namespace Profiler.Analyzer.Performance.Views
         //    this.Cursor = Cursors.Hand;
         //}
 
-        /// <summary>
-        /// The accept changes button has been clicked
-        /// </summary>
-        private void AcceptChanges_Click(object sender, RoutedEventArgs e)
-        {
-            CourseInformation.Focus();  // Forces the text box to give up focus and hence applies the changes
-        }
+        ///// <summary>
+        ///// The accept changes button has been clicked
+        ///// </summary>
+        //private void AcceptChanges_Click(object sender, RoutedEventArgs e)
+        //{
+        //    CourseInformation.Focus();  // Forces the text box to give up focus and hence applies the changes
+        //}
 	}
 
     // Data Model

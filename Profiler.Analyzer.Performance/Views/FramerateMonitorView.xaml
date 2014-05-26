@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	x:Class="Profiler.Analyzer.Performance.Views.FramePerSecondView"
+	x:Class="Profiler.Analyzer.Performance.Views.FramerateMonitorView"
     xmlns:charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480">
@@ -132,12 +132,24 @@
 				<TabItem Header="Chart">
 					<Grid Background="#FFE5E5E5">
 						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
 							<RowDefinition/>
 							<RowDefinition Height="Auto"/>
 						</Grid.RowDefinitions>
                         <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
-                        <charts:Chart Grid.Row="0"  Name="chart" Width="600" Height="350" Title="Frame Per Second" HorizontalAlignment="Center" Background="Transparent" 
+                        <StackPanel>
+                        	<Button Content="Simulate" Command="{Binding SimulateCommand}" Height="30" FontWeight="Bold" Width="100" HorizontalAlignment="Left" Margin="2,2,0,2"/>
+                        </StackPanel>
+                        <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
+                        <charts:Chart Grid.Row="1"  x:Name="chart" Width="600" Height="350" Title="Frame Per Second" HorizontalAlignment="Center" Background="Transparent" 
                        PlotAreaBorderStyle="{StaticResource NoBorder}" LegendVisibility="Collapsed" >
+                        	<charts:Chart.Series>
+                        		<charts:LineSeries LineStrokeThickness="1.5" AreaFill="#FF17DA0E" LineStroke="#FF17DA0E" PointStroke="#FF17DA0E" PointFill="#FF17DA0E">
+                        			<charts:LineSeries.DataSeries>
+                                        <charts:BindableDataSeries XValueBinding="{Binding TimeStamp}" YValueBinding="{Binding Delta}" ItemsSource="{Binding FramerateCollection}"/>
+                        			</charts:LineSeries.DataSeries>
+                        		</charts:LineSeries>
+                        	</charts:Chart.Series>
 
                             <!-- Add zooming and a trackball -->
                             <charts:Chart.Behaviour>
@@ -149,56 +161,32 @@
 
                             <!-- Define x and y axes. -->
                             <charts:Chart.XAxis>
-                                <charts:DateTimeAxis ShowMinorTicks="False" ShowMajorGridlines="False">
-                                    <charts:DateTimeAxis.Range>
-                                        <charts:DateTimeRange Minimum="01/01/2006" Maximum="04/03/2010"/>
-                                    </charts:DateTimeAxis.Range>
-                                </charts:DateTimeAxis>
+                                <charts:DateTimeAxis ShowMinorTicks="False" ShowMajorGridlines="False" Title="Time" Range="{Binding XAxisRange, StringFormat=yyyy-mm-dd HH:mm:ss.fffffff}" LabelFormatString="HH:mm:ss"/>
                             </charts:Chart.XAxis>
                             <charts:Chart.YAxis>
-                                <charts:LinearAxis LabelFormatString="0'fps" ShowMinorTicks="False" ShowMajorGridlines="False" Title="Change">
-                                    <charts:LinearAxis.Range>
-                                        <charts:DoubleRange Minimum="0" Maximum="70"/>
-                                    </charts:LinearAxis.Range>
-                                </charts:LinearAxis>
+                                <charts:LinearAxis ShowMinorTicks="False" ShowMajorGridlines="False" Title="Time interval between display updates (ms)" Range="{Binding YAxisRange,StringFormat={}{0}ms}"/>
                             </charts:Chart.YAxis>
                         </charts:Chart>
 
                         <!-- Define display below chart -->
-                        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,50,0">
+                        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,50,0">
                             <!-- Date display -->
-                            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[0].X, StringFormat='dd/MM/yyyy'}" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding Behaviour.Behaviours[0].CurrentPoints[0].X, ElementName=chart, StringFormat=yyyy-MM-dd HH:mm:ss}" Margin="0,0,10,0"/>
 
                             <!-- Series data display -->
-                            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[0].LineStroke}" VerticalAlignment="Center" />
-                            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[0].DataSeries.Title}"/>
+                            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding Series[0].LineStroke, ElementName=chart}" VerticalAlignment="Center" />
+                            <TextBlock Margin="4,0,0,0" Text="{Binding Series[0].DataSeries.Title, ElementName=chart}"/>
                             <TextBlock Margin="4,0,0,0"  Text="(" />
-                            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[0].Y, StringFormat=0.00}" Width="38" />
-                            <TextBlock Text="fps)" />
-
-                            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[1].LineStroke}" VerticalAlignment="Center" />
-                            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[1].DataSeries.Title}"  />
-                            <TextBlock Margin="4,0,0,0"  Text="(" />
-                            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[1].Y, StringFormat=0.00}" Width="38" />
-                            <TextBlock Text="fps)" />
-
-                            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[2].LineStroke}" VerticalAlignment="Center" />
-                            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[2].DataSeries.Title}" />
-                            <TextBlock Margin="4,0,0,0"  Text="(" />
-                            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[2].Y, StringFormat=0.00}" Width="38" />
-                            <TextBlock Text="fps)" />
+                            <TextBlock Text="{Binding Behaviour.Behaviours[0].CurrentPoints[0].Y, ElementName=chart, StringFormat=0.00}" Width="38" />
+                            <TextBlock Text="ms)" />
                         </StackPanel>
                     </Grid>
 				</TabItem>
 				<TabItem Header="Record">
-					<DataGrid AutoGenerateColumns="False">
+					<DataGrid ItemsSource="{Binding FramerateCollection}" AutoGenerateColumns="False" Foreground="#FF005AF5" HorizontalGridLinesBrush="#FFB9B9B9" VerticalGridLinesBrush="#FFB9B9B9">
 						<DataGrid.Columns>
-							<DataGridTextColumn Binding="{Binding Instance}" ClipboardContentBinding="{x:Null}" Header="Instrance"/>
-							<DataGridTextColumn Binding="{Binding CMP}" ClipboardContentBinding="{x:Null}" Header="CMP"/>
-							<DataGridTextColumn Binding="{Binding StartStamp, StringFormat=dd/MM HH:mm:ss.fffffff}" ClipboardContentBinding="{x:Null}" Header="Start TimeStamp"/>
-							<DataGridTextColumn Binding="{Binding DisplayedStamp, StringFormat=dd/MM HH:mm:ss.fffffff}" ClipboardContentBinding="{x:Null}" Header="Displayed TimeStamp"/>
-							<DataGridTextColumn Binding="{Binding Duration}" ClipboardContentBinding="{x:Null}" Header="Duration" HeaderStringFormat=""/>
-							<DataGridTextColumn Binding="{Binding ActualTimeSpan}" ClipboardContentBinding="{x:Null}" Header="TimeSpan"/>
+                            <DataGridTextColumn Binding="{Binding TimeStamp}" ClipboardContentBinding="{x:Null}" Header="TimeStamp"/>
+                            <DataGridTextColumn Binding="{Binding Delta}" ClipboardContentBinding="{x:Null}" Header="Delta"/>
 						</DataGrid.Columns>
 					</DataGrid>
 				</TabItem>

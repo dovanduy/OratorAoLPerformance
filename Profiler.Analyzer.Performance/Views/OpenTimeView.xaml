@@ -217,7 +217,7 @@
 								</Grid.ColumnDefinitions>
 
 								<TextBlock Text="CMP:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-								<TextBox x:Name="CMP" Text="{Binding Series[0].SelectedItems[0].CMP, Mode=TwoWay, ValidatesOnExceptions=True}" Width="300" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
+								<TextBox x:Name="CMP" Text="{Binding Series[0].SelectedItems[0].CMP, Mode=TwoWay, ValidatesOnExceptions=True }" Width="300" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
 
 								<TextBlock Text="StartStamp:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 								<TextBox x:Name="StartStamp" Text="{Binding Series[0].SelectedItems[0].StartStamp, Mode=TwoWay}" Width="300" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
@@ -226,9 +226,9 @@
 								<TextBox x:Name="DisplayedStamp" Text="{Binding Series[0].SelectedItems[0].DisplayedStamp, Mode=TwoWay}" Width="300" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
 
 								<TextBlock Text="ActualTimeSpan:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-								<TextBox x:Name="ActualTimeSpan" Text="{Binding Series[0].SelectedItems[0].ActualTimeSpan, Mode=TwoWay, ValidatesOnExceptions=True}" Width="300" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
+                                <TextBox x:Name="ActualTimeSpan" Text="{Binding Series[0].SelectedItems[0].ActualTimeSpan, Mode=TwoWay, ValidatesOnExceptions=True, StringFormat={}{0}ms}" Width="300" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
 								<TextBlock Text="Duration:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3"/>
-								<TextBox x:Name="Duration" Text="{Binding Series[0].SelectedItems[0].Duration, Mode=TwoWay, ValidatesOnExceptions=True}" Width="300" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
+								<TextBox x:Name="Duration" Text="{Binding Series[0].SelectedItems[0].Duration, Mode=TwoWay, ValidatesOnExceptions=True, StringFormat={}{0}ms}" Width="300" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" IsEnabled="False" />
 
 							</Grid>
 						</StackPanel>

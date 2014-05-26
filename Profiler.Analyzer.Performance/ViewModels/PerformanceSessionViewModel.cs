@@ -42,7 +42,7 @@ namespace Profiler.Analyzer.Performance.ViewModels
         {
             ViewModels = new ObservableCollection<ViewModelBase>();
 
-            FramePerSecondViewModel fpsVM = new FramePerSecondViewModel();
+            FramerateMonitorViewModel fpsVM = new FramerateMonitorViewModel();
             ViewModels.Add(fpsVM);
 
             OpenTimeViewModel opentimeVM = new OpenTimeViewModel();

@@ -16,9 +16,9 @@ C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performan
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\bin\Debug\protobuf-net.pdb
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\bin\Debug\protobuf-net.xml
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Profiler.Analyzer.Performance.csprojResolveAssemblyReference.cache
-C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Views\FramePerSecondView.baml
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Views\FramerateMonitorView.baml
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Views\ListHeaderItemView.g.cs
-C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Views\FramePerSecondView.g.cs
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Views\FramerateMonitorView.g.cs
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Views\ReactionTimeView.g.cs
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Views\OpenTimeView.g.cs
 C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\Views\PerformanceSessionView.g.cs

@@ -18,7 +18,7 @@ namespace Profiler.Analyzer.Performance.Views
 	/// <summary>
 	/// Interaction logic for OpentimeView.xaml
 	/// </summary>
-	public partial class FramePerSecondView : UserControl
+	public partial class FramerateMonitorView : UserControl
 	{
 
          /// <summary>
@@ -31,15 +31,15 @@ namespace Profiler.Analyzer.Performance.Views
         /// </summary>
         String[] legendNames = new String[] { "£ vs $", "£ vs €", "€ vs $" };
 
-        public FramePerSecondView()
+        public FramerateMonitorView()
         {
             InitializeComponent();
 
-            //Read each file, create DataSeries then add to the chart
-            for (int i = 0; i < fileNames.Length; i++)
-            {
-                CreateLineSeries(fileNames[i], legendNames[i]);
-            }
+            ////Read each file, create DataSeries then add to the chart
+            //for (int i = 0; i < fileNames.Length; i++)
+            //{
+            //    CreateLineSeries(fileNames[i], legendNames[i]);
+            //}
         }
 
         private void CreateLineSeries(string filename, string legendName)

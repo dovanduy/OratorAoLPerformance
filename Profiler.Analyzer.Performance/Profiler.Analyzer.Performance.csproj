@@ -59,12 +59,12 @@
   <ItemGroup>
     <Compile Include="Helpers.cs" />
     <Compile Include="Models\LogPipeline.cs" />
-    <Compile Include="Models\FramePerSecondModel.cs" />
+    <Compile Include="Models\FramerateMonitorModel.cs" />
     <Compile Include="Models\OpenTimeModel.cs" />
     <Compile Include="Models\PerformanceSession.cs" />
     <Compile Include="Models\ReactionTimeModel.cs" />
     <Compile Include="ViewModels\ListHeaderItemViewModel.cs" />
-    <Compile Include="ViewModels\FramePerSecondViewModel.cs" />
+    <Compile Include="ViewModels\FramerateMonitorViewModel.cs" />
     <Compile Include="ViewModels\ReactionTimeViewModel.cs" />
     <Compile Include="ViewModels\OpenTimeViewModel.cs" />
     <Compile Include="ViewModels\PerformanceSessionViewModel.cs" />
@@ -72,8 +72,8 @@
     <Compile Include="Views\ListHeaderItemView.xaml.cs">
       <DependentUpon>ListHeaderItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FramePerSecondView.xaml.cs">
-      <DependentUpon>FramePerSecondView.xaml</DependentUpon>
+    <Compile Include="Views\FramerateMonitorView.xaml.cs">
+      <DependentUpon>FramerateMonitorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReactionTimeView.xaml.cs">
       <DependentUpon>ReactionTimeView.xaml</DependentUpon>
@@ -91,7 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FramePerSecondView.xaml">
+    <Page Include="Views\FramerateMonitorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

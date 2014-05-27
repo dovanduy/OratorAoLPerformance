@@ -1,0 +1,36 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="Orator.AoL.MainWindow.NewMainWindow"
+	x:Name="Window"
+	Title="NewMainWindow"
+	Width="640" Height="480">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Menu Height="23">
+			<MenuItem Header="File">
+				<MenuItem Header="Open file" HorizontalAlignment="Left" Width="144.506666666667"/>
+				<MenuItem Header="Save as file" HorizontalAlignment="Left" Width="144.506666666667"/>
+				<Separator HorizontalAlignment="Left" Width="144.506666666667"/>
+				<MenuItem Header="Exit" HorizontalAlignment="Left" Width="144.506666666667"/>
+			</MenuItem>
+		</Menu>
+		<StackPanel Height="26" Grid.Row="2" Orientation="Horizontal">
+			<StackPanel.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFDEDEDE" Offset="0"/>
+					<GradientStop Color="#FFF7F7F7" Offset="1"/>
+					<GradientStop Color="#FFDEDCDC" Offset="0.5"/>
+				</LinearGradientBrush>
+			</StackPanel.Background>
+			<ComboBox Width="148"/>
+			<Button Content="Connect" Width="75" Margin="2,0,0,0"/>
+			<Button Content="Disconnect" Width="75" Margin="2,0,0,0"/>
+		</StackPanel>
+	</Grid>
+</Window>

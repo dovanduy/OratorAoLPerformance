@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Profiler.Analyzer.Performance.Views.PerformanceAnalyzerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style x:Key="NoBorder" TargetType="Border">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Black" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="WhiteSmoke">
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition Width="Auto"/>
+    		<ColumnDefinition/>
+    	</Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto" MinHeight="20"/>
+        </Grid.RowDefinitions>
+        <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Content="Simulate" Command="{Binding SimulateCommand}" Height="26" FontWeight="Bold" Width="80" HorizontalAlignment="Left" Margin="2,8,0,0"/>
+            <GroupBox Header="Features">
+            	<StackPanel Margin="0" Orientation="Horizontal">
+            		<ToggleButton Content="Feedback" Margin="2,0,0,0"/>
+            		<ToggleButton Content="Reaction time" VerticalAlignment="Top" Width="78.77" Margin="2,0,0,0"/>
+            		<ToggleButton Content="Open time" VerticalAlignment="Top" Width="78.77" Margin="2,0,0,0"/>
+            		<ToggleButton Content="FPS" VerticalAlignment="Top" Width="78.77" Margin="2,0,0,0"/>
+            	</StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
+        <charts:Chart Grid.Row="1"  x:Name="chart" Title="Frame Per Second" Background="Transparent" 
+                       PlotAreaBorderStyle="{StaticResource NoBorder}" LegendVisibility="Collapsed" HorizontalAlignment="Center" Width="460" Grid.Column="1" Margin="70,16.5" Height="300" >
+            <charts:Chart.Series>
+                <charts:LineSeries LineStrokeThickness="1.5" AreaFill="#FF17DA0E" LineStroke="#FF17DA0E" PointStroke="#FF17DA0E" PointFill="#FF17DA0E">
+                    <charts:LineSeries.DataSeries>
+                        <charts:BindableDataSeries XValueBinding="{Binding TimeStamp}" YValueBinding="{Binding Delta}" ItemsSource="{Binding FramerateCollection}"/>
+                    </charts:LineSeries.DataSeries>
+                </charts:LineSeries>
+            </charts:Chart.Series>
+
+            <!-- Add zooming and a trackball -->
+            <charts:Chart.Behaviour>
+                <charts:BehaviourManager x:Name="behaviourManager" AllowMultipleEnabled="True">
+                    <charts:TrackballBehaviour x:Name="track" />
+                    <charts:ZoomBehaviour />
+                </charts:BehaviourManager>
+            </charts:Chart.Behaviour>
+
+            <!-- Define x and y axes. -->
+            <charts:Chart.XAxis>
+                <charts:DateTimeAxis ShowMinorTicks="False" ShowMajorGridlines="False" Title="Time" Range="{Binding XAxisRange, StringFormat=yyyy-mm-dd HH:mm:ss.fffffff}" LabelFormatString="HH:mm:ss"/>
+            </charts:Chart.XAxis>
+            <charts:Chart.YAxis>
+                <charts:LinearAxis ShowMinorTicks="False" ShowMajorGridlines="False" Title="Time interval between display updates (ms)" Range="{Binding YAxisRange,StringFormat={}{0}ms}"/>
+            </charts:Chart.YAxis>
+        </charts:Chart>
+
+        <!-- Define display below chart -->
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0" Grid.ColumnSpan="2" MinHeight="20" Width="108.67">
+            <!-- Date display -->
+            <TextBlock Text="{Binding Behaviour.Behaviours[0].CurrentPoints[0].X, ElementName=chart, StringFormat=yyyy-MM-dd HH:mm:ss}" Margin="0,0,10,0"/>
+
+            <!-- Series data display -->
+            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding Series[0].LineStroke, ElementName=chart}" VerticalAlignment="Center" />
+            <TextBlock Margin="4,0,0,0" Text="{Binding Series[0].DataSeries.Title, ElementName=chart}"/>
+            <TextBlock Margin="4,0,0,0"  Text="(" />
+            <TextBlock Text="{Binding Behaviour.Behaviours[0].CurrentPoints[0].Y, ElementName=chart, StringFormat=0.00}" Width="38" />
+            <TextBlock Text="ms)" />
+        </StackPanel>
+    </Grid>
+</UserControl>

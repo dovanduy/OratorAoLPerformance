@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\
+C:\Users\xingmzha\Desktop\OratorAoLPerformance\Profiler.Analyzer.Performance\obj\Debug\
 Profiler.Analyzer.Performance
 none
 false
@@ -12,8 +12,8 @@ DEBUG;TRACE
 
 8844712038
 
-25-422307373
-2143268969
+2625725742
+21-1890128699
 Views\ListHeaderItemView.xaml;Views\FramerateMonitorView.xaml;Views\PerformanceAnalyzerView.xaml;Views\ReactionTimeView.xaml;Views\OpenTimeView.xaml;Views\PerformanceSessionView.xaml;Views\PerformanceView.xaml;Views\SessionExplorerView.xaml;
 
 False

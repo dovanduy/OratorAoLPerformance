@@ -61,10 +61,10 @@ namespace Profiler.Analyzer.Performance.ViewModels
 
             SelectedVM = fpsVM;
 
-            View = new PerformanceSessionView();
+            //View = new PerformanceSessionView();
             Model = new PerformanceSession();
             DisplayName = Model.SessionName;
-            View.DataContext = this;
+            //View.DataContext = this;
 
         }
 

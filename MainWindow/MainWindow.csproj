@@ -54,7 +54,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActiveDocumentConverter.cs" />
+    <Compile Include="AnchorableViewModel.cs" />
     <Compile Include="Converter\DeviceStateConverter.cs" />
+    <Compile Include="LayoutInitializer.cs" />
+    <Compile Include="NewMainWindowViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Models\DeviceConncectState.cs" />
     <Page Include="MainWindow.xaml">
@@ -78,6 +82,8 @@
     <Compile Include="NewMainWindow.xaml.cs">
       <DependentUpon>NewMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PanesStyleSelector.cs" />
+    <Compile Include="PanesTemplateSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -132,6 +138,10 @@
     <ProjectReference Include="..\protobuf-net\protobuf-net.csproj">
       <Project>{8374e4d7-2a91-48f1-9360-09b09cf27c3f}</Project>
       <Name>protobuf-net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xceed.Wpf.AvalonDock\Xceed.Wpf.AvalonDock.csproj">
+      <Project>{db81988f-e0f2-45a0-a1fd-8c37f3d35244}</Project>
+      <Name>Xceed.Wpf.AvalonDock</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

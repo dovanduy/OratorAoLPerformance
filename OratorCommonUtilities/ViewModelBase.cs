@@ -28,7 +28,16 @@ namespace OratorCommonUtilities
         /// Child classes can set this property to a new value,
         /// or override it to determine the value on-demand.
         /// </summary>
-        public virtual string DisplayName { get; protected set; }
+        private string _displayName;
+        public virtual string DisplayName
+        {
+            get { return _displayName; }
+            set
+            {
+                _displayName = value;
+                OnPropertyChanged("DisplayName");
+            }
+        }
 
         #endregion // DisplayName
 

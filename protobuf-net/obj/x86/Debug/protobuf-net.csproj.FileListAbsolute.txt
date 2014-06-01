@@ -4,3 +4,15 @@ C:\Users\xingmzha\workspace\Orator\protobuf-net\bin\x86\Debug\protobuf-net.xml
 C:\Users\xingmzha\workspace\Orator\protobuf-net\obj\x86\Debug\protobuf-net.dll
 C:\Users\xingmzha\workspace\Orator\protobuf-net\obj\x86\Debug\protobuf-net.pdb
 C:\Users\xingmzha\workspace\Orator\protobuf-net\obj\x86\Debug\protobuf-net.csprojResolveAssemblyReference.cache
+C:\Users\xingmzha\Desktop\AoL\OratorAoLPerformance\protobuf-net\bin\x86\Debug\protobuf-net.dll
+C:\Users\xingmzha\Desktop\AoL\OratorAoLPerformance\protobuf-net\bin\x86\Debug\protobuf-net.pdb
+C:\Users\xingmzha\Desktop\AoL\OratorAoLPerformance\protobuf-net\bin\x86\Debug\protobuf-net.xml
+C:\Users\xingmzha\Desktop\AoL\OratorAoLPerformance\protobuf-net\obj\x86\Debug\protobuf-net.csprojResolveAssemblyReference.cache
+C:\Users\xingmzha\Desktop\AoL\OratorAoLPerformance\protobuf-net\obj\x86\Debug\protobuf-net.dll
+C:\Users\xingmzha\Desktop\AoL\OratorAoLPerformance\protobuf-net\obj\x86\Debug\protobuf-net.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\x86\Debug\protobuf-net.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\x86\Debug\protobuf-net.pdb
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\bin\x86\Debug\protobuf-net.xml
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\x86\Debug\protobuf-net.csprojResolveAssemblyReference.cache
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\x86\Debug\protobuf-net.dll
+C:\Users\xingmzha\workspace\AOL\OratorAoLPerformance\protobuf-net\obj\x86\Debug\protobuf-net.pdb

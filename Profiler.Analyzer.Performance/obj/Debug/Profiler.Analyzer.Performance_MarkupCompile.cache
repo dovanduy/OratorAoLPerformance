@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-61578579381
+8844712038
 
-21-1521101542
-20-2089078542
-Views\ListHeaderItemView.xaml;Views\FramerateMonitorView.xaml;Views\ReactionTimeView.xaml;Views\OpenTimeView.xaml;Views\PerformanceSessionView.xaml;Views\PerformanceView.xaml;
+25-422307373
+2143268969
+Views\ListHeaderItemView.xaml;Views\FramerateMonitorView.xaml;Views\PerformanceAnalyzerView.xaml;Views\ReactionTimeView.xaml;Views\OpenTimeView.xaml;Views\PerformanceSessionView.xaml;Views\PerformanceView.xaml;Views\SessionExplorerView.xaml;
 
 False
 

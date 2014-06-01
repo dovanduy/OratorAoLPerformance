@@ -69,8 +69,8 @@ namespace Profiler.Analyzer.Performance.ViewModels
 		{
             SessionViewModelCollection = new ObservableCollection<PerformanceSessionViewModel>();
             SessionViewModelCollection.CollectionChanged += SessionViewModelCollection_CollectionChanged;
-            View = new PerformanceView();
-            View.DataContext = this;
+            //View = new PerformanceView();
+            //View.DataContext = this;
 
             this.AddSession();
 		}

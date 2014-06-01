@@ -91,6 +91,7 @@ namespace Orator.AoL.MainWindow
         } 
         #endregion
 
+
         public ViewModelBase MainDockPanelVM { get; set; }
 
         public Action StopMonitorDevice { get; private set; }

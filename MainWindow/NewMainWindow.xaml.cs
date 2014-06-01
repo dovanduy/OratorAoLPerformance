@@ -23,5 +23,11 @@ namespace Orator.AoL.MainWindow
 			
 			// Insert code required on object creation below this point.
 		}
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            NewMainWindowViewModel vm = new NewMainWindowViewModel();
+            this.DataContext = vm;
+        }
 	}
 }
